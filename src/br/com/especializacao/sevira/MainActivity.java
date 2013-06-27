@@ -1,25 +1,52 @@
 package br.com.especializacao.sevira;
 
+
 import android.os.Bundle;
-import android.os.Handler;
+import android.os.CountDownTimer;
 import android.app.Activity;
+import android.content.Intent;
 import android.view.Menu;
 import android.widget.Toast;
 
 public class MainActivity extends Activity {
 
-	private Runnable mMyRunnable ;
+
+	final int tempoEspera = 3000; // em milisegundos
+	public Object mCountDownTimer;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		
-		Handler myHandler = new Handler();
-		myHandler.postDelayed(mMyRunnable, 3000);
-		Toast.makeText(getApplicationContext(), "Teste de 3 segundos", Toast.LENGTH_LONG).show(); 
+		// Aguardar 3 segundos
+	
+		
+		 mCountDownTimer = new CountDownTimer(tempoEspera, 1000) {
+
+		     public void onTick(long millisUntilFinished) {		    		
+		     }
+
+		     public void onFinish() {
+		    	
+		     // Chamar a tela de compras
+		    	 
+		    	 Toast.makeText(getApplicationContext(), "Seja Bem-Vindo", Toast.LENGTH_LONG).show();
+		 		Intent i = new Intent(MainActivity.this, ComprasActivity.class);
+		 	    startActivityForResult(i, 1);	
+		 	  
+		     }
+		  }	.start();
+		
+	
+
+		
+		
+	
 
 	}
 
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
