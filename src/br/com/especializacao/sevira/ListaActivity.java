@@ -46,15 +46,39 @@ public class ListaActivity extends Activity implements OnItemClickListener
     {
         //Criamos nossa lista que preenchera o ListView
         itens = new ArrayList<ItemListView>();
-        ItemListView item1 = new ItemListView("Guilherme Biff", R.drawable.biff);
-        ItemListView item2 = new ItemListView("Lucas Volgarini", R.drawable.volgarini);
-        ItemListView item3 = new ItemListView("Eduardo Ricoldi", R.drawable.ricoldi);
-        ItemListView item4 = new ItemListView("Felipe Panngo", R.drawable.panngo);
+        ItemListView item1 = new ItemListView("Carne", R.drawable.carne);
+        ItemListView item2 = new ItemListView("Leite", R.drawable.leite);
+        ItemListView item3 = new ItemListView("Feijão", R.drawable.feijao);
+        ItemListView item4 = new ItemListView("Arroz", R.drawable.arroz);
+        ItemListView item5 = new ItemListView("Farinha", R.drawable.farinha);
+        ItemListView item6 = new ItemListView("Batata", R.drawable.batata);
+        ItemListView item7 = new ItemListView("Tomate", R.drawable.tomate);
+        ItemListView item8 = new ItemListView("Pão Francês", R.drawable.pao);
+        ItemListView item9 = new ItemListView("Café em Pó", R.drawable.cafe);
+        ItemListView item10 = new ItemListView("Açúcar", R.drawable.acucar);
+        ItemListView item11 = new ItemListView("Óleo", R.drawable.oleo);
+        ItemListView item12 = new ItemListView("Manteiga", R.drawable.manteiga);
+        ItemListView item13 = new ItemListView("Banana", R.drawable.banana);
+        ItemListView item14 = new ItemListView("Maçã", R.drawable.maca);
+        ItemListView item15 = new ItemListView("Sal", R.drawable.sal);
+        ItemListView item16 = new ItemListView("Alface", R.drawable.alface);
  
         itens.add(item1);
         itens.add(item2);
         itens.add(item3);
         itens.add(item4);
+        itens.add(item5);
+        itens.add(item6);
+        itens.add(item7);
+        itens.add(item8);
+        itens.add(item9);
+        itens.add(item10);
+        itens.add(item11);
+        itens.add(item12);
+        itens.add(item13);
+        itens.add(item14);
+        itens.add(item15);
+        itens.add(item16);
  
         //Cria o adapter
         adapterListView = new AdapterListView(this, itens);

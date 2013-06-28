@@ -9,11 +9,15 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal"
+        android:dividerHeight="1px"
+        android:layout_marginTop="5px" 
+        android:textSize="8px"
         android:padding="5sp">
         <ImageView
             android:id="@+id/imagemview"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
+            android:scaleType="centerInside"
             android:contentDescription="@string/desc"
             />
  

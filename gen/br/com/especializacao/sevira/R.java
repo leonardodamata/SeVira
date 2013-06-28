@@ -21,10 +21,29 @@ public final class R {
         public static final int activity_vertical_margin=0x7f040001;
     }
     public static final class drawable {
-        public static final int ic_compra=0x7f020000;
-        public static final int ic_launcher_carrinho=0x7f020001;
-        public static final int layout_quartetto=0x7f020002;
-        public static final int layout_quartetto_2=0x7f020003;
+        public static final int acucar=0x7f020000;
+        public static final int alface=0x7f020001;
+        public static final int arroz=0x7f020002;
+        public static final int banana=0x7f020003;
+        public static final int batata=0x7f020004;
+        public static final int cafe=0x7f020005;
+        public static final int carne=0x7f020006;
+        public static final int farinha=0x7f020007;
+        public static final int feijao=0x7f020008;
+        public static final int frango=0x7f020009;
+        public static final int ic_compra=0x7f02000a;
+        public static final int ic_launcher_carrinho=0x7f02000b;
+        public static final int layout_quartetto=0x7f02000c;
+        public static final int layout_quartetto_2=0x7f02000d;
+        public static final int leite=0x7f02000e;
+        public static final int maca=0x7f02000f;
+        public static final int macarrao=0x7f020010;
+        public static final int manteiga=0x7f020011;
+        public static final int oleo=0x7f020012;
+        public static final int ovos=0x7f020013;
+        public static final int pao=0x7f020014;
+        public static final int sal=0x7f020015;
+        public static final int tomate=0x7f020016;
     }
     public static final class id {
         public static final int CompatilharLista=0x7f080002;

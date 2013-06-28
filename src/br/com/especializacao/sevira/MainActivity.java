@@ -6,7 +6,7 @@ import android.os.CountDownTimer;
 import android.app.Activity;
 import android.content.Intent;
 import android.view.Menu;
-import android.widget.Toast;
+
 
 public class MainActivity extends Activity {
 
@@ -31,8 +31,7 @@ public class MainActivity extends Activity {
 		    	
 		     // Chamar a tela de compras
 		    	 
-		    	 Toast.makeText(getApplicationContext(), "Seja Bem-Vindo", Toast.LENGTH_LONG).show();
-		 		Intent i = new Intent(MainActivity.this, ComprasActivity.class);
+		    	Intent i = new Intent(MainActivity.this, ComprasActivity.class);
 		 	    startActivityForResult(i, 1);	
 		 	  
 		     }
