@@ -9,5 +9,6 @@
     <string name="todo">TODO</string>
     <string name="title_activity_lista">ListaActivity</string>
     <string name="title_activity_quantidade">QuantidadeActivity</string>
+    <string name="title_activity_lista_feita">ListaFeitaActivity</string>
 
 </resources>

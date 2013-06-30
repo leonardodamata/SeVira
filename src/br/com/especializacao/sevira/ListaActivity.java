@@ -15,10 +15,13 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
+
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
 
 
 
@@ -28,12 +31,15 @@ public class ListaActivity extends Activity implements OnItemClickListener
     private AdapterListView adapterListView;
     private ArrayList<ItemListView> itens;
     
-    private String medida;
     
     String[] listaDeUnidadesDeMedidas =   {"Kilo","Litro","Kilo","Kilo","Kilo",
-            "Kilo","Kilo","Unidade","Kilo","Kilo","Litro",
-            "Unidade","Kilo","Kilo","Pacote","Unidade"}; 
+                                          "Kilo","Kilo","Unidade","Kilo","Kilo",
+                                          "Litro", "Unidade","Kilo","Kilo","Pacote",
+                                          "Unidade"}; 
     long[] listaDeQuantidades = new long[16];
+    
+    String[] listaDeProdutos = {"Carne","Leite","Feijão","Arroz","Farinha","Batata","Tomate","Pão Francês","Café em Pó",
+			"Açucar","Óleo","Manteiga","Banana","Maça", "Sal","Alface"};
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
@@ -47,6 +53,24 @@ public class ListaActivity extends Activity implements OnItemClickListener
         listView.setOnItemClickListener(this);
  
         createListView();
+        
+        Button ok = (Button) findViewById(R.id.buttonOK);		 
+		 ok.setOnClickListener(new View.OnClickListener() {		
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+		    	Toast.makeText(getApplicationContext(), "To no botão", Toast.LENGTH_SHORT).show();
+
+				Intent produtos = new Intent(ListaActivity.this,ListaFeitaActivity.class);
+				produtos.putExtra("listaDeProdutos",listaDeProdutos);
+				produtos.putExtra("listaDeQuantidades",listaDeQuantidades);
+				produtos.putExtra("listaDeUnidadesDeMedidas",listaDeUnidadesDeMedidas);
+				Toast.makeText(getApplicationContext(), "To no botão", Toast.LENGTH_SHORT).show();
+				//startActivity(produtos);
+			}
+		});
+		 
+   	  
     }
  
     private void createListView()
@@ -69,7 +93,8 @@ public class ListaActivity extends Activity implements OnItemClickListener
         ItemListView item14 = new ItemListView("Maçã", R.drawable.maca);
         ItemListView item15 = new ItemListView("Sal", R.drawable.sal);
         ItemListView item16 = new ItemListView("Alface", R.drawable.alface);
-
+      
+        
         itens.add(item1);
         itens.add(item2);
         itens.add(item3);
@@ -101,7 +126,7 @@ public class ListaActivity extends Activity implements OnItemClickListener
     {
     	  //Pega o item que foi selecionado.
         ItemListView item = adapterListView.getItem(arg2);
-        medida = listaDeUnidadesDeMedidas[arg2];
+
         
     	//chamando a activity de quantidade e passando a lista 
     	 Intent quantia = new Intent(ListaActivity.this,QuantidadeActivity.class); 	
@@ -111,15 +136,13 @@ public class ListaActivity extends Activity implements OnItemClickListener
 		 quantia.putExtra("listaDeUnidadesDeMedidas",listaDeUnidadesDeMedidas[arg2]);
 		 quantia.putExtra("index",arg2);
 		 
-		 startActivityForResult(quantia,1);
-		 
-		 
-		 
-		 
-		 
+		 startActivityForResult(quantia,1);		
       
         
     }
+    
+      
+    
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -128,6 +151,7 @@ public class ListaActivity extends Activity implements OnItemClickListener
 		return true;
 	}
 	
+
 	public class ItemListView
 	{
 	    private String texto;
@@ -226,6 +250,13 @@ public class ListaActivity extends Activity implements OnItemClickListener
 	    }
 	}
 	
-
+	 @Override
+	 public void onActivityResult(int requestCode, int resultCode, Intent data)
+	 {
+		 int index = Integer.parseInt(data.getExtras().getString("index"));
+		 long quantidade = Long.parseLong(data.getExtras().getString("quantidade"));
+		 listaDeQuantidades[index] = quantidade;
+		 Toast.makeText(getApplicationContext(), String.valueOf(listaDeQuantidades[index]), Toast.LENGTH_SHORT).show();
+	 }
 
 }

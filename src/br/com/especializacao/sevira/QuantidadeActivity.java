@@ -22,10 +22,10 @@ public class QuantidadeActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_quantidade);
 		
-		TextView medida = (TextView) findViewById(R.id.textView1);
-		TextView produto = (TextView) findViewById(R.id.textView3);
-		valor = (EditText) findViewById(R.id.editText1); 
-		Button confirmar = (Button) findViewById(R.id.button1);
+		TextView medida = (TextView) findViewById(R.id.textMedida);
+		TextView produto = (TextView) findViewById(R.id.textItem);
+		valor = (EditText) findViewById(R.id.editQuantidade); 
+		Button confirmar = (Button) findViewById(R.id.buttonConfirmar);
 		
 		Intent mainAux = getIntent();
 		

@@ -6,13 +6,20 @@
     android:orientation="vertical"
     android:scaleType="centerInside" >
 
-   
     <ListView
         android:id="@+id/Lista"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="fill_parent"
+        android:layout_height="390dp"
+        android:layout_weight="1.42"
         android:divider="#ECECEC"
-        android:dividerHeight="1sp"
-        />
+        android:dividerHeight="1sp" />
+
+    <Button
+        android:id="@+id/buttonOK"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="OK"
+        android:textColor="#FFFFFF" 
+        android:background="#000000"/>
 
 </LinearLayout>
