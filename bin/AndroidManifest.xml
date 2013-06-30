@@ -30,6 +30,10 @@
             android:name="br.com.especializacao.sevira.ListaActivity"
             android:label="@string/app_name" >
         </activity>
+        <activity
+            android:name="br.com.especializacao.sevira.QuantidadeActivity"
+            android:label="@string/title_activity_quantidade" >
+        </activity>
     </application>
 
 </manifest>

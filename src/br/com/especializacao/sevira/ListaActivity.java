@@ -3,10 +3,11 @@ package br.com.especializacao.sevira;
 
 import java.util.ArrayList;
 
-import android.os.Bundle;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
@@ -14,9 +15,9 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 
@@ -26,7 +27,13 @@ public class ListaActivity extends Activity implements OnItemClickListener
     private ListView listView;
     private AdapterListView adapterListView;
     private ArrayList<ItemListView> itens;
- 
+    
+    private String medida;
+    
+    String[] listaDeUnidadesDeMedidas =   {"Kilo","Litro","Kilo","Kilo","Kilo",
+            "Kilo","Kilo","Unidade","Kilo","Kilo","Litro",
+            "Unidade","Kilo","Kilo","Pacote","Unidade"}; 
+    long[] listaDeQuantidades = new long[16];
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
@@ -62,7 +69,7 @@ public class ListaActivity extends Activity implements OnItemClickListener
         ItemListView item14 = new ItemListView("Maçã", R.drawable.maca);
         ItemListView item15 = new ItemListView("Sal", R.drawable.sal);
         ItemListView item16 = new ItemListView("Alface", R.drawable.alface);
- 
+
         itens.add(item1);
         itens.add(item2);
         itens.add(item3);
@@ -85,16 +92,33 @@ public class ListaActivity extends Activity implements OnItemClickListener
  
         //Define o Adapter
         listView.setAdapter(adapterListView);
-        //Cor quando a lista é selecionada para ralagem.
+        //Cor quando a lista é selecionada para rolagem.
         listView.setCacheColorHint(Color.TRANSPARENT);
     }
+    
  
     public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3)
     {
-        //Pega o item que foi selecionado.
+    	  //Pega o item que foi selecionado.
         ItemListView item = adapterListView.getItem(arg2);
-        //Demostração
-        Toast.makeText(this, "Você Clicou em: " + item.getTexto(), Toast.LENGTH_LONG).show();
+        medida = listaDeUnidadesDeMedidas[arg2];
+        
+    	//chamando a activity de quantidade e passando a lista 
+    	 Intent quantia = new Intent(ListaActivity.this,QuantidadeActivity.class); 	
+    	 
+    	 quantia.putExtra("listaDeProdutos",item.getTexto());
+		 quantia.putExtra("listaDeQuantidades",listaDeQuantidades[arg2]);
+		 quantia.putExtra("listaDeUnidadesDeMedidas",listaDeUnidadesDeMedidas[arg2]);
+		 quantia.putExtra("index",arg2);
+		 
+		 startActivityForResult(quantia,1);
+		 
+		 
+		 
+		 
+		 
+      
+        
     }
 
 	@Override

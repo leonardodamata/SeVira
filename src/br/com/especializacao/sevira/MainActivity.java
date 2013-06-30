@@ -1,10 +1,10 @@
 package br.com.especializacao.sevira;
 
 
-import android.os.Bundle;
-import android.os.CountDownTimer;
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.view.Menu;
 
 
