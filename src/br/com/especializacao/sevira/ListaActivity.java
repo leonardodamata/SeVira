@@ -20,7 +20,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
+//import android.widget.Toast;
 
 
 
@@ -59,9 +59,7 @@ public class ListaActivity extends Activity implements OnItemClickListener
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-		    	Toast.makeText(getApplicationContext(), "To no botão", Toast.LENGTH_SHORT).show();
-
-				Intent produtos = new Intent(ListaActivity.this,ListaFeitaActivity.class);
+		    	Intent produtos = new Intent(ListaActivity.this,ListaFeitaActivity.class);
 				produtos.putExtra("listaDeProdutos",listaDeProdutos);
 				produtos.putExtra("listaDeQuantidades",listaDeQuantidades);
 				produtos.putExtra("listaDeUnidadesDeMedidas",listaDeUnidadesDeMedidas);
@@ -255,7 +253,7 @@ public class ListaActivity extends Activity implements OnItemClickListener
 		 int index = Integer.parseInt(data.getExtras().getString("index"));
 		 long quantidade = Long.parseLong(data.getExtras().getString("quantidade"));
 		 listaDeQuantidades[index] = quantidade;
-		 Toast.makeText(getApplicationContext(), String.valueOf(listaDeQuantidades[index]), Toast.LENGTH_SHORT).show();
+		// Toast.makeText(getApplicationContext(), String.valueOf(listaDeQuantidades[index]), Toast.LENGTH_SHORT).show();
 	 }
 
 }

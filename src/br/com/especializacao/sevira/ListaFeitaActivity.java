@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 public class ListaFeitaActivity extends Activity implements OnItemClickListener {
@@ -26,8 +27,8 @@ public class ListaFeitaActivity extends Activity implements OnItemClickListener 
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_lista_feita);
 		
-		totalPeso = (TextView) findViewById(R.id.textView1);
-		Button finalizar = (Button) findViewById(R.id.button1);		
+		totalPeso = (TextView) findViewById(R.id.textItem);
+		Button finalizar = (Button) findViewById(R.id.buttonFinalizar);		
 		
 		Intent mainAux = getIntent();
 		
@@ -58,7 +59,7 @@ public class ListaFeitaActivity extends Activity implements OnItemClickListener 
 				j++;
 			}
 		}		
-		ListView lViewChekBox = (ListView) findViewById(R.id.listView1);
+		ListView lViewChekBox = (ListView) findViewById(R.id.listItem);
 		lViewChekBox.setAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_list_item_multiple_choice, listaDeProdutos2));
 		lViewChekBox.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
 		lViewChekBox.setOnItemClickListener(this);
@@ -93,7 +94,8 @@ public class ListaFeitaActivity extends Activity implements OnItemClickListener 
 			status[position] = false;
 		}
 		totalPeso.setText("Total: " + String.valueOf(total));
-        //Toast.makeText(getBaseContext(), String.valueOf(total), Toast.LENGTH_SHORT).show();
-	}
+		
+		Toast.makeText(getApplicationContext(), totalPeso.getText().toString(), Toast.LENGTH_SHORT).show();
+   }
 	
 }
