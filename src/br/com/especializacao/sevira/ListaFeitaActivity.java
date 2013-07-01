@@ -1,21 +1,17 @@
 package br.com.especializacao.sevira;
 
-import java.util.ArrayList;
-
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
-import android.util.SparseBooleanArray;
 import android.view.Menu;
 import android.view.View;
-import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
+
 
 public class ListaFeitaActivity extends Activity implements OnItemClickListener {
 	String[] listaDeProdutos2;
@@ -28,7 +24,7 @@ public class ListaFeitaActivity extends Activity implements OnItemClickListener 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_lista);
+		setContentView(R.layout.activity_lista_feita);
 		
 		totalPeso = (TextView) findViewById(R.id.textView1);
 		Button finalizar = (Button) findViewById(R.id.button1);		
@@ -39,7 +35,6 @@ public class ListaFeitaActivity extends Activity implements OnItemClickListener 
 		long[] listaDeQuantidades = mainAux.getLongArrayExtra("listaDeQuantidades");
 		String[] listaDeUnidadesDeMedidas = mainAux.getStringArrayExtra("listaDeUnidadesDeMedidas");
 		int j = 0;
-		//Toast.makeText(getApplication(), String.valueOf(listaDeQuantidades), Toast.LENGTH_LONG).show();
 		for(int i = 0;i < listaDeProdutos.length;i++)
 		{
 			if(listaDeQuantidades[i] != 0)

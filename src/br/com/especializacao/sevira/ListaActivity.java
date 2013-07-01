@@ -65,8 +65,7 @@ public class ListaActivity extends Activity implements OnItemClickListener
 				produtos.putExtra("listaDeProdutos",listaDeProdutos);
 				produtos.putExtra("listaDeQuantidades",listaDeQuantidades);
 				produtos.putExtra("listaDeUnidadesDeMedidas",listaDeUnidadesDeMedidas);
-				Toast.makeText(getApplicationContext(), "To no botão", Toast.LENGTH_SHORT).show();
-				//startActivity(produtos);
+		    	startActivity(produtos);
 			}
 		});
 		 
