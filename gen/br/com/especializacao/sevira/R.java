@@ -49,17 +49,18 @@ public final class R {
         public static final int CompatilharLista=0x7f080002;
         public static final int Comprar=0x7f080003;
         public static final int EditarLista=0x7f080001;
-        public static final int LinearLayout1=0x7f08000d;
+        public static final int LinearLayout1=0x7f08000e;
         public static final int Lista=0x7f080004;
         public static final int NovaLista=0x7f080000;
-        public static final int action_settings=0x7f080010;
+        public static final int action_settings=0x7f080011;
         public static final int buttonConfirmar=0x7f08000c;
         public static final int buttonFinalizar=0x7f080008;
         public static final int buttonOK=0x7f080005;
         public static final int editQuantidade=0x7f08000b;
-        public static final int imagemview=0x7f08000e;
+        public static final int editValor=0x7f08000d;
+        public static final int imagemview=0x7f08000f;
         public static final int listItem=0x7f080006;
-        public static final int text=0x7f08000f;
+        public static final int text=0x7f080010;
         public static final int textItem=0x7f080007;
         public static final int textMedida=0x7f08000a;
         public static final int textQuantidade=0x7f080009;
@@ -70,7 +71,8 @@ public final class R {
         public static final int activity_lista_feita=0x7f030002;
         public static final int activity_main=0x7f030003;
         public static final int activity_quantidade=0x7f030004;
-        public static final int item_listview=0x7f030005;
+        public static final int activity_valor=0x7f030005;
+        public static final int item_listview=0x7f030006;
     }
     public static final class menu {
         public static final int compras=0x7f070000;
@@ -78,6 +80,7 @@ public final class R {
         public static final int lista_feita=0x7f070002;
         public static final int main=0x7f070003;
         public static final int quantidade=0x7f070004;
+        public static final int valor=0x7f070005;
     }
     public static final class string {
         public static final int action_settings=0x7f050001;
@@ -88,6 +91,7 @@ public final class R {
         public static final int title_activity_lista=0x7f050006;
         public static final int title_activity_lista_feita=0x7f050008;
         public static final int title_activity_quantidade=0x7f050007;
+        public static final int title_activity_valor=0x7f050009;
         public static final int todo=0x7f050005;
     }
     public static final class style {

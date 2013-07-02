@@ -1,5 +1,7 @@
 package br.com.especializacao.sevira;
 
+
+
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
@@ -11,7 +13,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
 public class ListaFeitaActivity extends Activity implements OnItemClickListener {
@@ -21,6 +22,9 @@ public class ListaFeitaActivity extends Activity implements OnItemClickListener 
 	long total = 0;
 	TextView totalPeso;
 	boolean[] status;
+	
+	 
+	
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -59,8 +63,16 @@ public class ListaFeitaActivity extends Activity implements OnItemClickListener 
 				j++;
 			}
 		}		
+		
+	
+	
 		ListView lViewChekBox = (ListView) findViewById(R.id.listItem);
-		lViewChekBox.setAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_list_item_multiple_choice, listaDeProdutos2));
+		//descrição do item
+		
+	lViewChekBox.setAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_list_item_multiple_choice, listaDeProdutos2));
+		
+		
+       
 		lViewChekBox.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
 		lViewChekBox.setOnItemClickListener(this);
 		
@@ -83,7 +95,13 @@ public class ListaFeitaActivity extends Activity implements OnItemClickListener 
 
 	@Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-		if(status[position] == false)
+		
+		 // Chamar a tela de compras
+   	 
+    	Intent i = new Intent(ListaFeitaActivity.this, ValorActivity.class);
+ 	    startActivityForResult(i, 1);	
+		
+	/*	if(status[position] == false)
 		{
 			total = total + listaDeQuantidades2[position];
 			status[position] = true;
@@ -95,7 +113,7 @@ public class ListaFeitaActivity extends Activity implements OnItemClickListener 
 		}
 		totalPeso.setText("Total: " + String.valueOf(total));
 		
-		Toast.makeText(getApplicationContext(), totalPeso.getText().toString(), Toast.LENGTH_SHORT).show();
+		Toast.makeText(getApplicationContext(), totalPeso.getText().toString(), Toast.LENGTH_SHORT).show();*/
    }
 	
 }
