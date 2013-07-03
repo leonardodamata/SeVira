@@ -1,24 +1,15 @@
 package br.com.especializacao.sevira;
 
 
-
- 
-import java.util.ArrayList;
-
 import android.os.Bundle;
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -33,13 +24,15 @@ public class ListaFeitaActivity extends Activity implements OnItemClickListener 
 	TextView totalPeso;
 	boolean[] status;
 	
-	String[] total_geral;
+	String[] totalFinal;
+	
  
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_lista_feita);
 		
+	 
 		totalPeso = (TextView) findViewById(R.id.textItem);
 		Button finalizar = (Button) findViewById(R.id.buttonFinalizar);		
 		
@@ -66,11 +59,11 @@ public class ListaFeitaActivity extends Activity implements OnItemClickListener 
 			if(listaDeQuantidades[i] != 0)
 			{
 				listaDeProdutos2[j] = "Item: "+listaDeProdutos[i];
-				listaDeQuantidades2[j] = "Quantidade: "+ listaDeQuantidades[i];
+				//listaDeQuantidades2[j] = "Quantidade: "+  listaDeQuantidades[i].toString();
 				listaDeUnidadesDeMedidas2[j] = " Medida: "+listaDeUnidadesDeMedidas[i];
 				status[j] = false;
-				
-			//	total_geral[j] = listaDeProdutos2[j] +  listaDeUnidadesDeMedidas2[j] ;
+			 
+				//totalFinal = listaDeProdutos2[j].append(listaDeUnidadesDeMedidas2[j]);
 				j++;
 				
 
@@ -79,13 +72,21 @@ public class ListaFeitaActivity extends Activity implements OnItemClickListener 
 		}	;
  
 		// como concatenar dois arrays
-		total_geral = listaDeProdutos2 +listaDeUnidadesDeMedidas2;
-		
-		
-		ListView lViewChekBox = (ListView) findViewById(R.id.listItem);
+		 StringBuilder stb = new StringBuilder();
+		stb.append(listaDeProdutos2);
+		stb.append(" ");
+		stb.append(listaDeUnidadesDeMedidas2);
+	   
+		//String[] lines = stb.toString().split(" ");
+	///	for(String s: lines){
+		//    System.out.println("Content = " + s);
+		 //   System.out.println("Length = " + s.length());
+	//	}
+	    
+	        ListView lViewChekBox = (ListView) findViewById(R.id.listItem);
 		//descrição do item
-	
-        lViewChekBox.setAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_list_item_multiple_choice,  total_geral ));   
+	     //   lViewChekBox.setAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_list_item_multiple_choice,  listaDeProdutos2) ); 
+       lViewChekBox.setAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_list_item_multiple_choice,  listaDeProdutos2) );
 		lViewChekBox.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
 		lViewChekBox.setOnItemClickListener(this);
 		
@@ -100,7 +101,58 @@ public class ListaFeitaActivity extends Activity implements OnItemClickListener 
 			}
 		});
 	}
+	
+	/*public String[] append(String[] a1, String[] a2) {
+		String[] a1a2 = Arrays.copyOf(a1, a1.length  + a2.length);
+	    for (int i = a1.length; i < a1a2.length; i++) {
+	        a1a2[i] = a1[i] + a2[i];
+	    }  
+	    return a1a2;
+	}
+	
+   public String[] concat(String[] A, String[] B) {
+		  int aLen = A.length;
+		  int bLen = B.length;
+		  String[] C= new String[aLen+bLen];
+		  System.arraycopy(A, 0, C, 0, aLen);
+		  System.arraycopy(B, 0, C, aLen, bLen);
+		  return C;
+		}
+	
+	 public String[] generalConcatAll(String[]... jobs) {
+	        int len = 0;
+	        for (final String[] job : jobs) {
+	            len += job.length;
+	        }
+
+	        final String[] result = new String[len];
+
+	        int currentPos = 0;
+	        for (final String[] job : jobs) {
+	            System.arraycopy(job, 0, result, currentPos, job.length);
+	            currentPos += job.length;
+	        }
+
+	        return result;
+	    }
  
+	public static String[] join(String [] ... parms) {
+	    // calculate size of target array
+	    int size = 0;
+	    for (String[] array : parms) {
+	      size += array.length;
+	    }
+
+	    String[] result = new String[size];
+	    
+	    int j = 0;
+	    for (String[] array : parms) {
+	      for (String s : array) {
+	        result[j++] = s;
+	      }
+	    }
+	    return result;
+	  }/*/
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
@@ -112,7 +164,7 @@ public class ListaFeitaActivity extends Activity implements OnItemClickListener 
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 		
 		 // Chamar a tela de compras
-		Toast.makeText(getApplicationContext(), "teste", Toast.LENGTH_SHORT).show();
+		Toast.makeText(getApplicationContext(), totalPeso.getText().toString(), Toast.LENGTH_SHORT).show();
     	//--Intent i = new Intent(ListaFeitaActivity.this, ValorActivity.class);
  	    //--startActivityForResult(i, 1);	
 		
