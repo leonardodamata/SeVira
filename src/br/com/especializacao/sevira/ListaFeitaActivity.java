@@ -2,30 +2,39 @@ package br.com.especializacao.sevira;
 
 
 
+ 
+import java.util.ArrayList;
+
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 public class ListaFeitaActivity extends Activity implements OnItemClickListener {
 	String[] listaDeProdutos2;
 	long[] listaDeQuantidades2;
 	String[] listaDeUnidadesDeMedidas2;
+	double[] listaDeValorIndividual2;
 	long total = 0;
 	TextView totalPeso;
 	boolean[] status;
 	
-	 
-	
-	
+	String[] total_geral;
+ 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -56,25 +65,31 @@ public class ListaFeitaActivity extends Activity implements OnItemClickListener 
 		{
 			if(listaDeQuantidades[i] != 0)
 			{
-				listaDeProdutos2[j] = listaDeProdutos[i];
-				listaDeQuantidades2[j] = listaDeQuantidades[i];
-				listaDeUnidadesDeMedidas2[j] = listaDeUnidadesDeMedidas[i];
+				listaDeProdutos2[j] = "Item: "+listaDeProdutos[i];
+				listaDeQuantidades2[j] = "Quantidade: "+ listaDeQuantidades[i];
+				listaDeUnidadesDeMedidas2[j] = " Medida: "+listaDeUnidadesDeMedidas[i];
 				status[j] = false;
+				
+			//	total_geral[j] = listaDeProdutos2[j] +  listaDeUnidadesDeMedidas2[j] ;
 				j++;
+				
+
 			}
-		}		
+			
+		}	;
+ 
+		// como concatenar dois arrays
+		total_geral = listaDeProdutos2 +listaDeUnidadesDeMedidas2;
 		
-	
-	
+		
 		ListView lViewChekBox = (ListView) findViewById(R.id.listItem);
 		//descrição do item
-		
-	lViewChekBox.setAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_list_item_multiple_choice, listaDeProdutos2));
-		
-		
-       
+	
+        lViewChekBox.setAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_list_item_multiple_choice,  total_geral ));   
 		lViewChekBox.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
 		lViewChekBox.setOnItemClickListener(this);
+		
+		
 		
 		finalizar.setOnClickListener(new View.OnClickListener() {
 			
@@ -85,7 +100,7 @@ public class ListaFeitaActivity extends Activity implements OnItemClickListener 
 			}
 		});
 	}
-
+ 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
@@ -97,9 +112,9 @@ public class ListaFeitaActivity extends Activity implements OnItemClickListener 
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 		
 		 // Chamar a tela de compras
-   	 
-    	Intent i = new Intent(ListaFeitaActivity.this, ValorActivity.class);
- 	    startActivityForResult(i, 1);	
+		Toast.makeText(getApplicationContext(), "teste", Toast.LENGTH_SHORT).show();
+    	//--Intent i = new Intent(ListaFeitaActivity.this, ValorActivity.class);
+ 	    //--startActivityForResult(i, 1);	
 		
 	/*	if(status[position] == false)
 		{

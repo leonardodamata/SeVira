@@ -14,6 +14,7 @@ public class QuantidadeActivity extends Activity {
 	String listaDeProdutos;
 	long listaDeQuantidades;
 	String listaDeUnidadesDeMedidas;
+
 	EditText valor;
 	int index;
 	
@@ -32,6 +33,7 @@ public class QuantidadeActivity extends Activity {
 		listaDeProdutos = mainAux.getStringExtra("listaDeProdutos");
 		listaDeQuantidades = mainAux.getLongExtra("listaDeQuantidades",0);
 		listaDeUnidadesDeMedidas = mainAux.getStringExtra("listaDeUnidadesDeMedidas");
+		
 		index = mainAux.getIntExtra("index",0);
 		
 		medida.setText(listaDeUnidadesDeMedidas);
