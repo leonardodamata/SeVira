@@ -1,5 +1,6 @@
 package br.com.especializacao.sevira;
 
+
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
@@ -38,15 +39,20 @@ public class ValorActivity extends Activity {
 		
 			 
 	    finalizar.setOnClickListener(new View.OnClickListener() {	
-	        	Intent main_valor = new Intent(ValorActivity.this,ListaFeitaActivity.class);
+	        	
 				@Override
 				public void onClick(View v) {
 			
 					// TODO Auto-generated method stub
-					main_valor.putExtra("valor", valor.getText().toString());
+				Intent main_valor = new Intent(ValorActivity.this,ListaFeitaActivity.class);
+					
+				String mensagem = valor.getText().toString(); 
+					
+					main_valor.putExtra("valor", mensagem);
 					main_valor.putExtra("index", Integer.toString(index));
-					Toast.makeText(getApplicationContext(), "1/"+valor.getText().toString(), Toast.LENGTH_LONG).show();
+					Toast.makeText(getApplicationContext(), "1/"+mensagem, Toast.LENGTH_LONG).show();
 					setResult(RESULT_OK,main_valor);
+					// startActivity(main_valor);
 					finish();
 					
 					
