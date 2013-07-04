@@ -7,34 +7,44 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 public class ValorActivity extends Activity {
+	String listaDeProdutos;
+	long listaDeQuantidades;
+	String listaDeUnidadesDeMedidas;
 
+	EditText valor;
+	int index;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_valor);
 
 		//pegar referencia do valor  preço do produto
-	    final EditText valor = (EditText) findViewById(R.id.editValor); 	
+		//TextView medida = (TextView) findViewById(R.id.textMedida);
+		//TextView produto = (TextView) findViewById(R.id.textItem);
+		valor = (EditText) findViewById(R.id.editValor); 
+		Button finalizar = (Button) findViewById(R.id.buttonFinalizar);
 		
-
+		Intent mainAux = getIntent();
 		
-	    Button finalizar = (Button) findViewById(R.id.buttonFinalizar);		 
-	        finalizar.setOnClickListener(new View.OnClickListener() {	
+		listaDeProdutos = mainAux.getStringExtra("listaDeProdutos2");
+		listaDeQuantidades = mainAux.getLongExtra("listaDeQuantidades2",0);
+		listaDeUnidadesDeMedidas = mainAux.getStringExtra("listaDeUnidadesDeMedidas2");
+		
+		index = mainAux.getIntExtra("index",0);
+		
+			 
+	    finalizar.setOnClickListener(new View.OnClickListener() {	
 	        	Intent main_valor = new Intent(ValorActivity.this,ListaFeitaActivity.class);
 				@Override
 				public void onClick(View v) {
-				
-				
-					Toast.makeText(getApplicationContext(), valor.getText().toString(), Toast.LENGTH_SHORT).show();
-					
-			/*		// TODO Auto-generated method stub
-					main2.putExtra("quantidade", valor.getText().toString());
-					main2.putExtra("index", Integer.toString(index));
-					setResult(1,main2);
-					finish();/*/
+			
+					// TODO Auto-generated method stub
+					main_valor.putExtra("valor", valor.getText().toString());
+					main_valor.putExtra("index", Integer.toString(index));
+					setResult(1,main_valor);
+					finish();
 				}
 			});
 		

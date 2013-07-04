@@ -21,26 +21,29 @@ public class ListaFeitaActivity extends Activity implements OnItemClickListener 
 	String[] listaDeUnidadesDeMedidas2;
 	double[] listaDeValorIndividual2;
 	long total = 0;
+	long valor = 0;
 	TextView totalPeso;
-	boolean[] status;
-	
-	String[] totalFinal;
-	
- 
+	TextView totalValor;
+	boolean[] status;   
+    String valorT;
+    int index;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_lista_feita);
 		
 	 
-		totalPeso = (TextView) findViewById(R.id.textItem);
+		totalPeso = (TextView) findViewById(R.id.textPeso);
+		totalValor = (TextView) findViewById(R.id.textValor);
 		Button finalizar = (Button) findViewById(R.id.buttonFinalizar);		
 		
 		Intent mainAux = getIntent();
-		
 		String[] listaDeProdutos = mainAux.getStringArrayExtra("listaDeProdutos");
 		long[] listaDeQuantidades = mainAux.getLongArrayExtra("listaDeQuantidades");
 		String[] listaDeUnidadesDeMedidas = mainAux.getStringArrayExtra("listaDeUnidadesDeMedidas");
+		
+		
 		int j = 0;
 		for(int i = 0;i < listaDeProdutos.length;i++)
 		{
@@ -54,16 +57,19 @@ public class ListaFeitaActivity extends Activity implements OnItemClickListener 
 		listaDeUnidadesDeMedidas2 = new String[j];
 		status = new boolean[j];
 		j = 0;
+	    String[] listaFinal = new String[listaDeQuantidades2.length];
 		for(int i = 0;i < listaDeProdutos.length;i++)
 		{
 			if(listaDeQuantidades[i] != 0)
 			{
-				listaDeProdutos2[j] = "Item: "+listaDeProdutos[i];
-				//listaDeQuantidades2[j] = "Quantidade: "+  listaDeQuantidades[i].toString();
-				listaDeUnidadesDeMedidas2[j] = " Medida: "+listaDeUnidadesDeMedidas[i];
+				
+				listaDeProdutos2[j] = listaDeProdutos[i];
+				listaDeQuantidades2[j] = listaDeQuantidades[i];;
+				listaDeUnidadesDeMedidas2[j] = listaDeUnidadesDeMedidas[i];
+			 	listaFinal[j] = listaDeProdutos2[j] +" "+listaDeQuantidades2[j] +" "+ listaDeUnidadesDeMedidas2[j]+"s x R$: 0,00"+" = R$ 0,00" ;
 				status[j] = false;
 			 
-				//totalFinal = listaDeProdutos2[j].append(listaDeUnidadesDeMedidas2[j]);
+			
 				j++;
 				
 
@@ -71,22 +77,10 @@ public class ListaFeitaActivity extends Activity implements OnItemClickListener 
 			
 		}	;
  
-		// como concatenar dois arrays
-		 StringBuilder stb = new StringBuilder();
-		stb.append(listaDeProdutos2);
-		stb.append(" ");
-		stb.append(listaDeUnidadesDeMedidas2);
-	   
-		//String[] lines = stb.toString().split(" ");
-	///	for(String s: lines){
-		//    System.out.println("Content = " + s);
-		 //   System.out.println("Length = " + s.length());
-	//	}
-	    
-	        ListView lViewChekBox = (ListView) findViewById(R.id.listItem);
-		//descrição do item
-	     //   lViewChekBox.setAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_list_item_multiple_choice,  listaDeProdutos2) ); 
-       lViewChekBox.setAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_list_item_multiple_choice,  listaDeProdutos2) );
+		    
+	    ListView lViewChekBox = (ListView) findViewById(R.id.listItem);
+	    lViewChekBox.setAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_list_item_multiple_choice,  listaFinal) ); 
+     //  lViewChekBox.setAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_list_item_multiple_choice,  listaDeProdutos2) );
 		lViewChekBox.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
 		lViewChekBox.setOnItemClickListener(this);
 		
@@ -101,58 +95,7 @@ public class ListaFeitaActivity extends Activity implements OnItemClickListener 
 			}
 		});
 	}
-	
-	/*public String[] append(String[] a1, String[] a2) {
-		String[] a1a2 = Arrays.copyOf(a1, a1.length  + a2.length);
-	    for (int i = a1.length; i < a1a2.length; i++) {
-	        a1a2[i] = a1[i] + a2[i];
-	    }  
-	    return a1a2;
-	}
-	
-   public String[] concat(String[] A, String[] B) {
-		  int aLen = A.length;
-		  int bLen = B.length;
-		  String[] C= new String[aLen+bLen];
-		  System.arraycopy(A, 0, C, 0, aLen);
-		  System.arraycopy(B, 0, C, aLen, bLen);
-		  return C;
-		}
-	
-	 public String[] generalConcatAll(String[]... jobs) {
-	        int len = 0;
-	        for (final String[] job : jobs) {
-	            len += job.length;
-	        }
 
-	        final String[] result = new String[len];
-
-	        int currentPos = 0;
-	        for (final String[] job : jobs) {
-	            System.arraycopy(job, 0, result, currentPos, job.length);
-	            currentPos += job.length;
-	        }
-
-	        return result;
-	    }
- 
-	public static String[] join(String [] ... parms) {
-	    // calculate size of target array
-	    int size = 0;
-	    for (String[] array : parms) {
-	      size += array.length;
-	    }
-
-	    String[] result = new String[size];
-	    
-	    int j = 0;
-	    for (String[] array : parms) {
-	      for (String s : array) {
-	        result[j++] = s;
-	      }
-	    }
-	    return result;
-	  }/*/
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
@@ -162,25 +105,39 @@ public class ListaFeitaActivity extends Activity implements OnItemClickListener 
 
 	@Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-		
-		 // Chamar a tela de compras
-		Toast.makeText(getApplicationContext(), totalPeso.getText().toString(), Toast.LENGTH_SHORT).show();
-    	//--Intent i = new Intent(ListaFeitaActivity.this, ValorActivity.class);
- 	    //--startActivityForResult(i, 1);	
-		
-	/*	if(status[position] == false)
+	
+		//// Chamar a activity tela de compras
+	
+		Intent produtosValor = new Intent(ListaFeitaActivity.this,ValorActivity.class);
+		produtosValor.putExtra("listaDeProdutos2",listaDeProdutos2);
+		produtosValor.putExtra("listaDeQuantidades2",listaDeQuantidades2);
+		produtosValor.putExtra("listaDeUnidadesDeMedidas2",listaDeUnidadesDeMedidas2);
+    	startActivity(produtosValor);
+    	
+    	// mandar aguardar o retorno de ma activy
+    	Intent mainValorAux = getIntent();
+       
+        valorT = mainValorAux.getStringExtra("valor");
+		index = mainValorAux.getIntExtra("index",0);
+	
+		if(status[position] == false)
 		{
 			total = total + listaDeQuantidades2[position];
+			//valor =valor+ Long.parseLong(valorT) ;
+			valor =valor+3 ;
 			status[position] = true;
 		}
 		else
 		{
 			total = total - listaDeQuantidades2[position];
+			//valor =valor - Long.parseLong(valorT);
+			valor =valor - 1;
 			status[position] = false;
 		}
 		totalPeso.setText("Total: " + String.valueOf(total));
+		totalValor.setText("Valor Total: " + String.valueOf(valor));
 		
-		Toast.makeText(getApplicationContext(), totalPeso.getText().toString(), Toast.LENGTH_SHORT).show();*/
+		Toast.makeText(getApplicationContext(),valorT+"/"+ totalPeso.getText().toString(), Toast.LENGTH_SHORT).show();
    }
 	
 }

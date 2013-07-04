@@ -31,7 +31,9 @@ public class MainActivity extends Activity {
 		    	
 		     // Chamar a tela de compras
 		    	 
-		    	Intent i = new Intent(MainActivity.this, ComprasActivity.class);
+		    //	Intent i = new Intent(MainActivity.this, ComprasActivity.class);
+		    // passando direto para lista
+		   	Intent i = new Intent(MainActivity.this, ListaActivity.class);	 
 		 	    startActivityForResult(i, 1);	
 		 	  
 		     }

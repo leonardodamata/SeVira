@@ -254,7 +254,6 @@ public class ListaActivity extends Activity implements OnItemClickListener
 		 int index = Integer.parseInt(data.getExtras().getString("index"));
 		 long quantidade = Long.parseLong(data.getExtras().getString("quantidade"));
 		 listaDeQuantidades[index] = quantidade;
-		// Toast.makeText(getApplicationContext(), String.valueOf(listaDeQuantidades[index]), Toast.LENGTH_SHORT).show();
 	 }
 
 }
