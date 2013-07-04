@@ -7,12 +7,14 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class ValorActivity extends Activity {
 	String listaDeProdutos;
 	long listaDeQuantidades;
 	String listaDeUnidadesDeMedidas;
-
+	
+	
 	EditText valor;
 	int index;
 	@Override
@@ -43,8 +45,13 @@ public class ValorActivity extends Activity {
 					// TODO Auto-generated method stub
 					main_valor.putExtra("valor", valor.getText().toString());
 					main_valor.putExtra("index", Integer.toString(index));
-					setResult(1,main_valor);
+					Toast.makeText(getApplicationContext(), valor.getText().toString(), Toast.LENGTH_LONG).show();
+					setResult(RESULT_OK,main_valor);
 					finish();
+					
+					
+					
+					
 				}
 			});
 		

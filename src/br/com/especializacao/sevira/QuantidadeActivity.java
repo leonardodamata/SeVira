@@ -34,7 +34,7 @@ public class QuantidadeActivity extends Activity {
 		listaDeQuantidades = mainAux.getLongExtra("listaDeQuantidades",0);
 		listaDeUnidadesDeMedidas = mainAux.getStringExtra("listaDeUnidadesDeMedidas");
 		
-		index = mainAux.getIntExtra("index",0);
+		index  = mainAux.getIntExtra("index",0);
 		
 		medida.setText(listaDeUnidadesDeMedidas);
 		produto.setText(listaDeProdutos);

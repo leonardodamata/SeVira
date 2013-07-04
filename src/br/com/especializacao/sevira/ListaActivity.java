@@ -131,7 +131,7 @@ public class ListaActivity extends Activity implements OnItemClickListener
     	 quantia.putExtra("listaDeProdutos",item.getTexto());
 		 quantia.putExtra("listaDeQuantidades",listaDeQuantidades[arg2]);
 		 quantia.putExtra("listaDeUnidadesDeMedidas",listaDeUnidadesDeMedidas[arg2]);
-		// quantia.putExtra("listaDeUnidadesDeMedidas",listaDeUnidadesDeMedidas[arg2]);
+	
 		 quantia.putExtra("index",arg2);
 		 
 		 startActivityForResult(quantia,1);		
