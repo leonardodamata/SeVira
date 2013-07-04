@@ -122,12 +122,12 @@ public class ListaFeitaActivity extends Activity implements OnItemClickListener 
 		Toast.makeText(getApplicationContext(),Integer.toString(REQUEST_CODE), Toast.LENGTH_LONG).show();
 
     	// mandar aguardar o retorno de ma activy
- /*  Intent mainValorAux = getIntent();
+        Intent mainValorAux = getIntent();
        
         valorT = mainValorAux.getStringExtra("valor");
 		index = mainValorAux.getIntExtra("index",0);
-	
-		if(status[position] == false)
+		Toast.makeText(getApplicationContext(),"4/"+valorT, Toast.LENGTH_LONG).show();
+	/*	if(status[position] == false)
 		{
 			total = total + listaDeQuantidades2[position];
 			//valor =valor+ Long.parseLong(valorT) ;
@@ -160,7 +160,7 @@ public class ListaFeitaActivity extends Activity implements OnItemClickListener 
 	                valorT = mainValorAux.getStringExtra("valor");
 	        		index = mainValorAux.getIntExtra("index",0);
 	        	
-	        		 Toast.makeText(getApplicationContext(),valorT, Toast.LENGTH_LONG).show();
+	        		 Toast.makeText(getApplicationContext(),"2/"+valorT, Toast.LENGTH_LONG).show();
 	        		if(status[requestCode] == false)
 	        		{
 	        			total = total + listaDeQuantidades2[requestCode];
@@ -178,7 +178,7 @@ public class ListaFeitaActivity extends Activity implements OnItemClickListener 
 	        		totalPeso.setText("Total: " + String.valueOf(total));
 	        		totalValor.setText("Valor Total: " + String.valueOf(valor));
 	        		
-	        		Toast.makeText(getApplicationContext(), String.valueOf(valorT), Toast.LENGTH_LONG).show();
+	        		Toast.makeText(getApplicationContext(), "3/"+String.valueOf(valorT), Toast.LENGTH_LONG).show();
 	         
 	             }  
 	             if (resultCode == RESULT_CANCELED) {      

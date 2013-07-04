@@ -45,7 +45,7 @@ public class ValorActivity extends Activity {
 					// TODO Auto-generated method stub
 					main_valor.putExtra("valor", valor.getText().toString());
 					main_valor.putExtra("index", Integer.toString(index));
-					Toast.makeText(getApplicationContext(), valor.getText().toString(), Toast.LENGTH_LONG).show();
+					Toast.makeText(getApplicationContext(), "1/"+valor.getText().toString(), Toast.LENGTH_LONG).show();
 					setResult(RESULT_OK,main_valor);
 					finish();
 					
