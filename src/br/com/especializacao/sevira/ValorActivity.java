@@ -14,8 +14,7 @@ public class ValorActivity extends Activity {
 	String listaDeProdutos;
 	long listaDeQuantidades;
 	String listaDeUnidadesDeMedidas;
-	
-	
+	String posicao;	
 	EditText valor;
 	int index;
 	@Override
@@ -34,7 +33,7 @@ public class ValorActivity extends Activity {
 		listaDeProdutos = mainAux.getStringExtra("listaDeProdutos2");
 		listaDeQuantidades = mainAux.getLongExtra("listaDeQuantidades2",0);
 		listaDeUnidadesDeMedidas = mainAux.getStringExtra("listaDeUnidadesDeMedidas2");
-		
+		posicao =  mainAux.getStringExtra("posicao");
 		index = mainAux.getIntExtra("index",0);
 		
 			 

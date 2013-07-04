@@ -16,18 +16,18 @@ import android.widget.Toast;
 
 
 public class ListaFeitaActivity extends Activity implements OnItemClickListener {
-	String[] listaDeProdutos2;
-	long[] listaDeQuantidades2;
-	long[] listaDeValor2;
-	String[] listaDeUnidadesDeMedidas2;
-	double[] listaDeValorIndividual2;
-	long total = 0;
-	long valor = 0;
-	TextView totalPeso;
-	TextView totalValor;
-	boolean[] status;   
-    String valorT;
-    int index;
+	private String[] listaDeProdutos2;
+	private long[] listaDeQuantidades2;
+	 long[] listaDeValor2;
+	private String[] listaDeUnidadesDeMedidas2;
+	 double[] listaDeValorIndividual2;
+	private long total = 0;
+	private long valor = 0;
+	private TextView totalPeso;
+	private TextView totalValor;
+	private boolean[] status;   
+	 String valorT;
+	 int index;
     static int  REQUEST_CODE ;
    
 	@Override
@@ -110,18 +110,31 @@ public class ListaFeitaActivity extends Activity implements OnItemClickListener 
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 	
 		//// Chamar a activity tela de compras
-	//	if(lViewChekBox.isChecked());
-		REQUEST_CODE = position;  // The request code
-		
-		Intent produtosValor = new Intent(ListaFeitaActivity.this,ValorActivity.class);
-		produtosValor.putExtra("listaDeProdutos2",listaDeProdutos2);
-		produtosValor.putExtra("listaDeQuantidades2",listaDeQuantidades2);
-		produtosValor.putExtra("listaDeUnidadesDeMedidas2",listaDeUnidadesDeMedidas2);
-    	//startActivity(produtosValor);
-	  startActivityForResult(produtosValor, REQUEST_CODE);
-	   
+	
+	if(status[position] == false)
+		{
+	    	REQUEST_CODE = position;
+			Intent produtosValor = new Intent(ListaFeitaActivity.this,ValorActivity.class);
+			produtosValor.putExtra("listaDeProdutos2",listaDeProdutos2);
+			produtosValor.putExtra("listaDeQuantidades2",listaDeQuantidades2);
+			produtosValor.putExtra("listaDeUnidadesDeMedidas2",listaDeUnidadesDeMedidas2);
+			produtosValor.putExtra("posicao",position);
+	    
+			//valor =valor+ Long.parseLong(valorT) ;
+			valor +=3 ;
+			status[position] = true;
+			startActivityForResult(produtosValor, REQUEST_CODE);
+		}
+		else
+		{
+			 Toast.makeText(getApplicationContext(),"Desmancando o produto!", Toast.LENGTH_LONG).show();
+			 valor -= 1;
+				status[position] = false;
+		}
  		
-		//Toast.makeText(getApplicationContext(),Integer.toString(REQUEST_CODE), Toast.LENGTH_LONG).show();
+		totalPeso.setText("Total: " + String.valueOf(total));
+		totalValor.setText("Valor Total: " + String.valueOf(valor));
+		
 
     	// mandar aguardar o retorno de ma activy
   /*      Intent mainValorAux = getIntent();
@@ -129,12 +142,13 @@ public class ListaFeitaActivity extends Activity implements OnItemClickListener 
         valorT = mainValorAux.getStringExtra("valor");
 		index = mainValorAux.getIntExtra("index",0);
 		Toast.makeText(getApplicationContext(),"4/"+valorT, Toast.LENGTH_LONG).show();
-	/*	if(status[position] == false)
+		if(status[position] == false)
 		{
 			total = total + listaDeQuantidades2[position];
 			//valor =valor+ Long.parseLong(valorT) ;
 			valor +=3 ;
 			status[position] = true;
+			  startActivityForResult(produtosValor, REQUEST_CODE);
 		}
 		else
 		{
@@ -146,15 +160,16 @@ public class ListaFeitaActivity extends Activity implements OnItemClickListener 
 		totalPeso.setText("Total: " + String.valueOf(total));
 		totalValor.setText("Valor Total: " + String.valueOf(valor));
 		
-		Toast.makeText(getApplicationContext(),valorT+"/"+ totalPeso.getText().toString(), Toast.LENGTH_SHORT).show();
-*/
+		*/
    }
 	
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 	    // Check which request we're responding to
 
-		Intent mainValorAux = getIntent();
+		 Toast.makeText(getApplicationContext(),"2/onActivityResult", Toast.LENGTH_LONG).show();
+	   
+		 Intent mainValorAux = getIntent();
 		    if(resultCode == RESULT_OK){        
 
 	             
@@ -168,15 +183,15 @@ public class ListaFeitaActivity extends Activity implements OnItemClickListener 
 	        			total = total + listaDeQuantidades2[requestCode];
 	        			////valor =valor+ Long.parseLong(valorT) ;
 	        			valor +=3 ;
-	        			status[requestCode] = true;
+	        			
 	        		}
-	        		else
+	        		/*else
 	        		{
 	        			total = total - listaDeQuantidades2[requestCode];
 	        			//valor =valor - Long.parseLong(valorT);
 	        			valor -= 1;
-	        			status[requestCode] = false;
-	        		}
+	        		
+	        		}/*/
 	        		totalPeso.setText("Total: " + String.valueOf(total));
 	        		totalValor.setText("Valor Total: " + String.valueOf(valor));
 
