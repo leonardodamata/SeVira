@@ -15,7 +15,7 @@ public class QuantidadeActivity extends Activity {
 	long listaDeQuantidades;
 	String listaDeUnidadesDeMedidas;
 
-	EditText valor;
+	private EditText valor;
 	int index;
 	
 	@Override
@@ -28,7 +28,7 @@ public class QuantidadeActivity extends Activity {
 		valor = (EditText) findViewById(R.id.editQuantidade); 
 		Button confirmar = (Button) findViewById(R.id.buttonConfirmar);
 		
-		Intent mainAux = getIntent();
+	/*	Intent mainAux = getIntent();
 		
 		listaDeProdutos = mainAux.getStringExtra("listaDeProdutos");
 		listaDeQuantidades = mainAux.getLongExtra("listaDeQuantidades",0);
@@ -50,7 +50,7 @@ public class QuantidadeActivity extends Activity {
 				setResult(1,main2);
 				finish();
 			}
-		});
+		});*/
 		
 		
 	}

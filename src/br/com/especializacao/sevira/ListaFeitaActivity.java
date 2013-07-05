@@ -30,6 +30,8 @@ public class ListaFeitaActivity extends Activity implements OnItemClickListener 
     int index;
     static int  REQUEST_CODE ;
     private int tamanho;
+    private String[] listaFinal; 
+    private int j;
 
    
 	@Override
@@ -49,7 +51,7 @@ public class ListaFeitaActivity extends Activity implements OnItemClickListener 
 		String[] listaDeUnidadesDeMedidas = mainAux.getStringArrayExtra("listaDeUnidadesDeMedidas");
 		
 		
-		int j = 0;
+		j = 0;
 		for(int i = 0;i < listaDeProdutos.length;i++)
 		{
 			if(listaDeQuantidades[i] != 0)
@@ -62,7 +64,7 @@ public class ListaFeitaActivity extends Activity implements OnItemClickListener 
 		listaDeUnidadesDeMedidas2 = new String[j];
 		status = new boolean[j];
 		j = 0;
-	    String[] listaFinal = new String[listaDeQuantidades2.length];
+	    listaFinal = new String[listaDeQuantidades2.length];
 	    
 	    tamanho =  listaDeQuantidades2.length;
 		for(int i = 0;i < listaDeProdutos.length;i++)
@@ -136,11 +138,13 @@ public class ListaFeitaActivity extends Activity implements OnItemClickListener 
 		{
 			 Toast.makeText(getApplicationContext(),"Desmarcando o produto!", Toast.LENGTH_LONG).show();
 			// valor = valor - Long.parseLong(valor3);
-			 valor = 0;
+			valor = 1;
 			 total = total - listaDeQuantidades2[position];
 			totalPeso.setText("Total Itens: " + String.valueOf(total));
-        	totalValor.setText("Valor Total: " + String.valueOf(valor));
+        /////	totalValor.setText("Valor Total: " + String.valueOf(valor));
 				status[position] = false;
+			//	refreshListaList( String.valueOf(valor));
+				refreshListaList( );
 		}
  		
 		
@@ -166,6 +170,20 @@ public class ListaFeitaActivity extends Activity implements OnItemClickListener 
 		*/
    }
 	
+	/////@Override
+	protected void OnResume(){
+		super.onResume();
+	refreshListaList();
+	}
+	
+	private void refreshListaList(){
+	
+		 Toast.makeText(getApplicationContext(),"refreshListaList", Toast.LENGTH_SHORT).show();
+		listaFinal[j] = listaDeProdutos2[j] +" "+listaDeQuantidades2[j] +" "+ listaDeUnidadesDeMedidas2[j]+"s x R$: 0,00"+" = R$ 0,00" ;
+		valor =valor -1;/// Long.parseLong(valor2);
+		totalValor.setText("Valor Total: " + String.valueOf(valor));
+	}
+	
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
 	    // Check which request we're responding to
@@ -183,15 +201,15 @@ public class ListaFeitaActivity extends Activity implements OnItemClickListener 
 						Toast.makeText(getApplicationContext()," Valor 5/"+valor3, Toast.LENGTH_LONG).show();
 						
 					
-		        			total = total + listaDeQuantidades2[requestCode];
-		        			////valor =valor+ Long.parseLong(valorT) ;
-		        			valor +=Long.parseLong(valor3) ;
+		       			total = total + listaDeQuantidades2[requestCode];
+		       			valor +=Long.parseLong(valor3) ;
 		        			
 		        	
 		        		
 		        		totalPeso.setText("Total Itens: " + String.valueOf(total));
 		        		totalValor.setText("Valor Total: " + String.valueOf(valor));
-
+		        		listaFinal[requestCode] = listaDeProdutos2[requestCode] +" "+listaDeQuantidades2[requestCode] +" "+ listaDeUnidadesDeMedidas2[requestCode]+"s x R$: "+valor3+" = R$ "+ (listaDeQuantidades2[requestCode] *  Long.parseLong(valor3));
+		        	
 		        		
 			      }		
 	

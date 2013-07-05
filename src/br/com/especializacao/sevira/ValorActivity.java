@@ -9,7 +9,6 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 public class ValorActivity extends Activity {
 	String listaDeProdutos;
@@ -49,24 +48,17 @@ public class ValorActivity extends Activity {
 				@Override
 				public void onClick(View v) {
 			
-					String valor2 = valor.getText().toString();     
-					String posicao2 = String.valueOf(posicao);  
+				String valor2 = valor.getText().toString();     
+			    String posicao2 = String.valueOf(posicao);  
 		     	REQUEST_CODE =	posicao;			
 	
-		  	            
-				//  Intent main_valor = new Intent(v.getContext(),ListaFeitaActivity.class);
-				  Intent main_valor = new Intent();
+		     	Intent main_valor = new Intent();
 						
-						main_valor.putExtra("posicao",posicao2);
-						main_valor.putExtra("valor2",valor2); 			
+				main_valor.putExtra("posicao",posicao2);
+				main_valor.putExtra("valor2",valor2); 			
 						
-					
-					
-						Toast.makeText(getApplicationContext(),"cade posição 2!"+ posicao2, Toast.LENGTH_SHORT).show();
-            			 Toast.makeText(getApplicationContext(),"cade o valor 3!/"+ valor2, Toast.LENGTH_SHORT).show();
-							setResult(Activity.RESULT_OK,main_valor);
-							
-							finish();
+				setResult(Activity.RESULT_OK,main_valor);
+				finish();
 
 					
 					
