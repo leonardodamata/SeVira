@@ -9,7 +9,6 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 public class ValorActivity extends Activity {
@@ -54,26 +53,18 @@ public class ValorActivity extends Activity {
 					String posicao2 = String.valueOf(posicao);  
 		     	REQUEST_CODE =	posicao;			
 	
-		    	
-	           /*  Intent i = new Intent(v.getContext(), ListaFeitaActivity.class);
-	                Bundle params = new Bundle();
-	         
-	                params.putString("valor2", valor2);
-	                params.putString("posicao2", posicao2);
-	                i.putExtras(params);
-	               startActivity(i);*/
-	            
-				  Intent main_valor = new Intent(v.getContext(),ListaFeitaActivity.class);
-
+		  	            
+				//  Intent main_valor = new Intent(v.getContext(),ListaFeitaActivity.class);
+				  Intent main_valor = new Intent();
 						
-						main_valor.putExtra("posicao",posicao);
-						main_valor.putExtra("valor2",valor.getText().toString()); 			
-						main_valor.putExtra("index", Integer.toString(index));
+						main_valor.putExtra("posicao",posicao2);
+						main_valor.putExtra("valor2",valor2); 			
+						
 					
 					
 						Toast.makeText(getApplicationContext(),"cade posição 2!"+ posicao2, Toast.LENGTH_SHORT).show();
-            			 Toast.makeText(getApplicationContext(),"cade o valor 3!"+listaValor+"/"+ valor2, Toast.LENGTH_SHORT).show();
-							setResult(1,main_valor);
+            			 Toast.makeText(getApplicationContext(),"cade o valor 3!/"+ valor2, Toast.LENGTH_SHORT).show();
+							setResult(Activity.RESULT_OK,main_valor);
 							
 							finish();
 
