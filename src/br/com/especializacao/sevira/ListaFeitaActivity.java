@@ -171,16 +171,21 @@ public class ListaFeitaActivity extends Activity implements OnItemClickListener 
 		 super.onActivityResult(requestCode, resultCode, data);
 		 Toast.makeText(getApplicationContext(),"3/onActivityResult", Toast.LENGTH_SHORT).show();
 	 
-	/*	  Intent mainValorAux = getIntent();
+ Intent mainValorAux = getIntent();
 		  
 	   //     String listaDeProdutos = mainValorAux.getStringExtra("listaDeProdutos2");
 		//	long listaDeQuantidades = mainValorAux.getLongExtra("listaDeQuantidades2",0);
 		//	String listaDeUnidadesDeMedidas = mainValorAux.getStringExtra("listaDeUnidadesDeMedidas2");
-			int posicao = mainValorAux.getIntExtra("posicao",0);
+			int posicao2 = mainValorAux.getIntExtra("posicao",0);
 			index = mainValorAux.getIntExtra("index",0);
-			String valor = mainValorAux.getStringExtra("valor2");/*/
+			String valor = mainValorAux.getStringExtra("valor2");
+			
+			  Toast.makeText(getApplicationContext(),"4/"+posicao2, Toast.LENGTH_LONG).show();
+			  
+			  Toast.makeText(getApplicationContext(),"4/"+valor, Toast.LENGTH_LONG).show();
+			 //	
 		  
-           Intent i = getIntent();
+      /*     Intent i = getIntent();
 		  
 		  Bundle params = i.getExtras();  
 		   
@@ -189,7 +194,7 @@ public class ListaFeitaActivity extends Activity implements OnItemClickListener 
 		   String valor4 = params.getString("valor2");
 		   String posicao4 = params.getString("posicao2");
 		    Toast.makeText(getApplicationContext(),valor4, Toast.LENGTH_LONG).show();
-		  }
+		  }*/
 		
 	   
 	 if(resultCode == RESULT_OK){        

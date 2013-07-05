@@ -55,31 +55,27 @@ public class ValorActivity extends Activity {
 		     	REQUEST_CODE =	posicao;			
 	
 		    	
-	             Intent i = new Intent(v.getContext(), ListaFeitaActivity.class);
+	           /*  Intent i = new Intent(v.getContext(), ListaFeitaActivity.class);
 	                Bundle params = new Bundle();
 	         
 	                params.putString("valor2", valor2);
 	                params.putString("posicao2", posicao2);
 	                i.putExtras(params);
-	               startActivity(i); 
-	              //  setResult(1,i);
-	              //  finish();
-		     	
-				/*	 Intent main_valor = new Intent(v.getContext(),ListaFeitaActivity.class);
+	               startActivity(i);*/
+	            
+				  Intent main_valor = new Intent(v.getContext(),ListaFeitaActivity.class);
 
-						String valor2 = valor.getText().toString(); 
-							
-					
+						
 						main_valor.putExtra("posicao",posicao);
 						main_valor.putExtra("valor2",valor.getText().toString()); 			
 						main_valor.putExtra("index", Integer.toString(index));
 					
 					
-						Toast.makeText(getApplicationContext(),"cade posição 2!"+ posicao, Toast.LENGTH_SHORT).show();
+						Toast.makeText(getApplicationContext(),"cade posição 2!"+ posicao2, Toast.LENGTH_SHORT).show();
             			 Toast.makeText(getApplicationContext(),"cade o valor 3!"+listaValor+"/"+ valor2, Toast.LENGTH_SHORT).show();
 							setResult(1,main_valor);
-							//startActivity(main_valor);
-							finish();*/
+							
+							finish();
 
 					
 					
