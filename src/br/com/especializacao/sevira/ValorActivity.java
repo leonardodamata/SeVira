@@ -14,47 +14,62 @@ public class ValorActivity extends Activity {
 	String listaDeProdutos;
 	long listaDeQuantidades;
 	String listaDeUnidadesDeMedidas;
-	String posicao;	
+	private int posicao;	
 	EditText valor;
 	int index;
+	static int  REQUEST_CODE ;
+	private String listaValor2;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_valor);
 
 		//pegar referencia do valor  preço do produto
-		//TextView medida = (TextView) findViewById(R.id.textMedida);
-		//TextView produto = (TextView) findViewById(R.id.textItem);
 		valor = (EditText) findViewById(R.id.editValor); 
 		Button finalizar = (Button) findViewById(R.id.buttonFinalizar);
 		
+				
 		Intent mainAux = getIntent();
-		
+	
 		listaDeProdutos = mainAux.getStringExtra("listaDeProdutos2");
 		listaDeQuantidades = mainAux.getLongExtra("listaDeQuantidades2",0);
 		listaDeUnidadesDeMedidas = mainAux.getStringExtra("listaDeUnidadesDeMedidas2");
-		posicao =  mainAux.getStringExtra("posicao");
+		posicao =  mainAux.getIntExtra("posicao",0);
+	    listaValor2 =  mainAux.getStringExtra("listaValor");
 		index = mainAux.getIntExtra("index",0);
+	
 		
-			 
+	
+			
 	    finalizar.setOnClickListener(new View.OnClickListener() {	
 	        	
 				@Override
 				public void onClick(View v) {
 			
-					// TODO Auto-generated method stub
-				Intent main_valor = new Intent(ValorActivity.this,ListaFeitaActivity.class);
+				    
+		     	REQUEST_CODE =	posicao;			
+	
+				 
+						
+					 Intent main_valor = new Intent(v.getContext(),MainActivity.class);
+
+						String valor2 = valor.getText().toString(); 
+							
+						main_valor.putExtra("listaDeProdutos2",listaDeProdutos);
+						main_valor.putExtra("listaDeQuantidades2",listaDeQuantidades);
+						main_valor.putExtra("listaDeUnidadesDeMedidas2",listaDeUnidadesDeMedidas);
+						main_valor.putExtra("posicao",posicao);
+						main_valor.putExtra("valor2",valor.getText().toString()); 			
+						main_valor.putExtra("index", Integer.toString(index));
 					
-				String mensagem = valor.getText().toString(); 
-					
-					main_valor.putExtra("valor", mensagem);
-					main_valor.putExtra("index", Integer.toString(index));
-					Toast.makeText(getApplicationContext(), "1/"+mensagem, Toast.LENGTH_LONG).show();
-					setResult(RESULT_OK,main_valor);
-					// startActivity(main_valor);
-					finish();
-					
-					
+						Toast.makeText(getApplicationContext(),"Lista feita cade"+ posicao, Toast.LENGTH_SHORT).show();
+						Toast.makeText(getApplicationContext(),"cade posição 2!"+ posicao, Toast.LENGTH_SHORT).show();
+            			 Toast.makeText(getApplicationContext(),"cade o valor 3!"+listaValor2+"/"+ valor2, Toast.LENGTH_SHORT).show();
+							setResult(1,main_valor);
+							// startActivity(main_valor);
+							finish();
+
 					
 					
 				}

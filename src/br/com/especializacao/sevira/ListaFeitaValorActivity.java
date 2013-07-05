@@ -15,7 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
-public class ListaFeitaActivity extends Activity implements OnItemClickListener {
+public class ListaFeitaValorActivity extends Activity implements OnItemClickListener {
 	private String[] listaDeProdutos2;
 	private long[] listaDeQuantidades2;
 	long[] listaDeValor2;
@@ -29,14 +29,14 @@ public class ListaFeitaActivity extends Activity implements OnItemClickListener 
 	String valorT;
     int index;
     static int  REQUEST_CODE ;
-   // private String[] listaValor;
+    private String[] listaValor2;
     private int tamanho;
 
    
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_lista_feita);
+		setContentView(R.layout.activity_lista_feita_valor);
 		
 	 
 		totalPeso = (TextView) findViewById(R.id.textPeso);
@@ -48,6 +48,7 @@ public class ListaFeitaActivity extends Activity implements OnItemClickListener 
 		String[] listaDeProdutos = mainAux.getStringArrayExtra("listaDeProdutos");
 		long[] listaDeQuantidades = mainAux.getLongArrayExtra("listaDeQuantidades");
 		String[] listaDeUnidadesDeMedidas = mainAux.getStringArrayExtra("listaDeUnidadesDeMedidas");
+		long[] listaDeValor = mainAux.getLongArrayExtra("valor2");
 		
 		
 		int j = 0;
@@ -61,6 +62,7 @@ public class ListaFeitaActivity extends Activity implements OnItemClickListener 
 		listaDeProdutos2 = new String[j];
 		listaDeQuantidades2 = new long[j];
 		listaDeUnidadesDeMedidas2 = new String[j];
+		listaValor2 = new String[j];
 		status = new boolean[j];
 		j = 0;
 	    String[] listaFinal = new String[listaDeQuantidades2.length];
@@ -72,9 +74,10 @@ public class ListaFeitaActivity extends Activity implements OnItemClickListener 
 			{
 				
 				listaDeProdutos2[j] = listaDeProdutos[i];
- 				listaDeQuantidades2[j] = listaDeQuantidades[i];
+				listaDeQuantidades2[j] = listaDeQuantidades[i];
+				listaValor2[j] = listaValor2[i];
 				listaDeUnidadesDeMedidas2[j] = listaDeUnidadesDeMedidas[i];
-			 	listaFinal[j] = listaDeProdutos2[j] +" "+listaDeQuantidades2[j] +" "+ listaDeUnidadesDeMedidas2[j]+"s x R$: 0,00"+" = R$ 0,00" ;
+			 	listaFinal[j] = listaDeProdutos2[j] +" "+listaDeQuantidades2[j] +" "+ listaDeUnidadesDeMedidas2[j]+"s x R$:" + listaValor2[j]+" = R$ 0,00" ;
 				status[j] = false;
 			 
 			
@@ -87,7 +90,8 @@ public class ListaFeitaActivity extends Activity implements OnItemClickListener 
  
 		    
 	    ListView lViewChekBox = (ListView) findViewById(R.id.listItem);
-	    lViewChekBox.setAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_list_item_multiple_choice,  listaFinal) );   
+	    lViewChekBox.setAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_list_item_multiple_choice,  listaFinal) ); 
+     //  lViewChekBox.setAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_list_item_multiple_choice,  listaDeProdutos2) );
 		lViewChekBox.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
 		lViewChekBox.setOnItemClickListener(this);
 
@@ -118,19 +122,19 @@ public class ListaFeitaActivity extends Activity implements OnItemClickListener 
 	if(status[position] == false)
 		{
 	      REQUEST_CODE = position;
-				Intent produtosValor = new Intent(ListaFeitaActivity.this,ValorActivity.class);
+				Intent produtosValor = new Intent(view.getContext(),ValorActivity.class);
 				produtosValor.putExtra("listaDeProdutos2",listaDeProdutos2);
 				produtosValor.putExtra("listaDeQuantidades2",listaDeQuantidades2);
 				produtosValor.putExtra("listaDeUnidadesDeMedidas2",listaDeUnidadesDeMedidas2);
-			//	produtosValor.putExtra("listaValor",listaValor);
+				produtosValor.putExtra("listaValor",listaValor2);
 				produtosValor.putExtra("tamanho", tamanho);
 				produtosValor.putExtra("posicao",position);
            
 			//valor =valor+ Long.parseLong(valorT) ;
 			valor +=3 ;
 			status[position] = true;
-			
-
+		   	
+			 Toast.makeText(getApplicationContext(),"LostaValor!"+ position, Toast.LENGTH_LONG).show();
 			 Toast.makeText(getApplicationContext(),"cade a posição 01!"+ position, Toast.LENGTH_LONG).show();
 			// startActivity(produtosValor);
 		 startActivityForResult(produtosValor, REQUEST_CODE);
@@ -142,15 +146,23 @@ public class ListaFeitaActivity extends Activity implements OnItemClickListener 
 				status[position] = false;
 		}
  		
+		totalPeso.setText("Total: " + String.valueOf(total));
+		totalValor.setText("Total: " + String.valueOf(valor));
 		
 
+    	// mandar aguardar o retorno de ma activy
+  /*      Intent mainValorAux = getIntent();
+       
+        valorT = mainValorAux.getStringExtra("valor");
+		index = mainValorAux.getIntExtra("index",0);
+		Toast.makeText(getApplicationContext(),"4/"+valorT, Toast.LENGTH_LONG).show();
 		if(status[position] == false)
 		{
 			total = total + listaDeQuantidades2[position];
 			//valor =valor+ Long.parseLong(valorT) ;
 			valor +=3 ;
 			status[position] = true;
-			
+			  startActivityForResult(produtosValor, REQUEST_CODE);
 		}
 		else
 		{
@@ -162,50 +174,9 @@ public class ListaFeitaActivity extends Activity implements OnItemClickListener 
 		totalPeso.setText("Total: " + String.valueOf(total));
 		totalValor.setText("Valor Total: " + String.valueOf(valor));
 		
-		
+		*/
    }
 	
-	/*@Override
-	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-	    // Check which request we're responding to
-		 super.onActivityResult(requestCode, resultCode, data);
-		 Toast.makeText(getApplicationContext(),"3/onActivityResult", Toast.LENGTH_SHORT).show();
-	 
-		  Intent mainValorAux = getIntent();
-		  
-	        String listaDeProdutos = mainValorAux.getStringExtra("listaDeProdutos2");
-			long listaDeQuantidades = mainValorAux.getLongExtra("listaDeQuantidades2",0);
-			String listaDeUnidadesDeMedidas = mainValorAux.getStringExtra("listaDeUnidadesDeMedidas2");
-			int posicao = mainValorAux.getIntExtra("posicao",0);
-			index = mainValorAux.getIntExtra("index",0);
-			String valor = mainValorAux.getStringExtra("valor2");
-		  
-			
-		 Toast.makeText(getApplicationContext(),"cade a posição! na lista "+ posicao, Toast.LENGTH_SHORT).show();
-		 Toast.makeText(getApplicationContext(),"cade o valor! na lista "+ valor, Toast.LENGTH_SHORT).show();
 	
-		/*  if(resultCode == RESULT_OK){        
-
-	        
-	        	
-	        		if(status[requestCode] == false)
-	        		{
-	        			total = total + listaDeQuantidades2[requestCode];
-	        			////valor =valor+ Long.parseLong(valorT) ;
-	        			valor +=3 ;
-	        			
-	        		}
-	        		
-	        		totalPeso.setText("Total: " + String.valueOf(total));
-	        		totalValor.setText("Valor Total: " + String.valueOf(valor));
-
-	        		Toast.makeText(getApplicationContext(), "3/"+String.valueOf(valorT), Toast.LENGTH_LONG).show();
-
-	             }  
-	             if (resultCode == RESULT_CANCELED) {      
-	                 Toast.makeText(getApplicationContext(),"Your sim type iss PREEEEE paidddddddddd", Toast.LENGTH_LONG).show();  
-	             }  /
-
-	}*/
 	
 }
