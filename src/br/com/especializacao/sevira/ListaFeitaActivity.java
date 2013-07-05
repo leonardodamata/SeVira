@@ -4,6 +4,8 @@ package br.com.especializacao.sevira;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
@@ -29,7 +31,6 @@ public class ListaFeitaActivity extends Activity implements OnItemClickListener 
 	String valorT;
     int index;
     static int  REQUEST_CODE ;
-   // private String[] listaValor;
     private int tamanho;
 
    
@@ -122,7 +123,6 @@ public class ListaFeitaActivity extends Activity implements OnItemClickListener 
 				produtosValor.putExtra("listaDeProdutos2",listaDeProdutos2);
 				produtosValor.putExtra("listaDeQuantidades2",listaDeQuantidades2);
 				produtosValor.putExtra("listaDeUnidadesDeMedidas2",listaDeUnidadesDeMedidas2);
-			//	produtosValor.putExtra("listaValor",listaValor);
 				produtosValor.putExtra("tamanho", tamanho);
 				produtosValor.putExtra("posicao",position);
            
@@ -132,18 +132,18 @@ public class ListaFeitaActivity extends Activity implements OnItemClickListener 
 			
 
 			 Toast.makeText(getApplicationContext(),"cade a posição 01!"+ position, Toast.LENGTH_LONG).show();
-			// startActivity(produtosValor);
-		 startActivityForResult(produtosValor, REQUEST_CODE);
+			 startActivityForResult(produtosValor,REQUEST_CODE);
+		// startActivity(produtosValor);
 		}
 		else
 		{
-			 Toast.makeText(getApplicationContext(),"Desmancando o produto!", Toast.LENGTH_LONG).show();
+			 Toast.makeText(getApplicationContext(),"Desmarcando o produto!", Toast.LENGTH_LONG).show();
 			 valor -= 1;
 				status[position] = false;
 		}
  		
 		
-
+/*
 		if(status[position] == false)
 		{
 			total = total + listaDeQuantidades2[position];
@@ -162,29 +162,37 @@ public class ListaFeitaActivity extends Activity implements OnItemClickListener 
 		totalPeso.setText("Total: " + String.valueOf(total));
 		totalValor.setText("Valor Total: " + String.valueOf(valor));
 		
-		
+		*/
    }
 	
-	/*@Override
+	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 	    // Check which request we're responding to
 		 super.onActivityResult(requestCode, resultCode, data);
 		 Toast.makeText(getApplicationContext(),"3/onActivityResult", Toast.LENGTH_SHORT).show();
 	 
-		  Intent mainValorAux = getIntent();
+	/*	  Intent mainValorAux = getIntent();
 		  
-	        String listaDeProdutos = mainValorAux.getStringExtra("listaDeProdutos2");
-			long listaDeQuantidades = mainValorAux.getLongExtra("listaDeQuantidades2",0);
-			String listaDeUnidadesDeMedidas = mainValorAux.getStringExtra("listaDeUnidadesDeMedidas2");
+	   //     String listaDeProdutos = mainValorAux.getStringExtra("listaDeProdutos2");
+		//	long listaDeQuantidades = mainValorAux.getLongExtra("listaDeQuantidades2",0);
+		//	String listaDeUnidadesDeMedidas = mainValorAux.getStringExtra("listaDeUnidadesDeMedidas2");
 			int posicao = mainValorAux.getIntExtra("posicao",0);
 			index = mainValorAux.getIntExtra("index",0);
-			String valor = mainValorAux.getStringExtra("valor2");
+			String valor = mainValorAux.getStringExtra("valor2");/*/
 		  
-			
-		 Toast.makeText(getApplicationContext(),"cade a posição! na lista "+ posicao, Toast.LENGTH_SHORT).show();
-		 Toast.makeText(getApplicationContext(),"cade o valor! na lista "+ valor, Toast.LENGTH_SHORT).show();
-	
-		/*  if(resultCode == RESULT_OK){        
+           Intent i = getIntent();
+		  
+		  Bundle params = i.getExtras();  
+		   
+		  if(params!=null)
+		  {   
+		   String valor4 = params.getString("valor2");
+		   String posicao4 = params.getString("posicao2");
+		    Toast.makeText(getApplicationContext(),valor4, Toast.LENGTH_LONG).show();
+		  }
+		
+	   
+	 if(resultCode == RESULT_OK){        
 
 	        
 	        	
@@ -199,13 +207,12 @@ public class ListaFeitaActivity extends Activity implements OnItemClickListener 
 	        		totalPeso.setText("Total: " + String.valueOf(total));
 	        		totalValor.setText("Valor Total: " + String.valueOf(valor));
 
-	        		Toast.makeText(getApplicationContext(), "3/"+String.valueOf(valorT), Toast.LENGTH_LONG).show();
-
+	        		
 	             }  
 	             if (resultCode == RESULT_CANCELED) {      
 	                 Toast.makeText(getApplicationContext(),"Your sim type iss PREEEEE paidddddddddd", Toast.LENGTH_LONG).show();  
-	             }  /
+	             }   
 
-	}*/
+	}
 	
 }

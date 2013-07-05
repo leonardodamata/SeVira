@@ -1,6 +1,7 @@
 package br.com.especializacao.sevira;
 
 
+
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
@@ -8,6 +9,7 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class ValorActivity extends Activity {
@@ -18,7 +20,7 @@ public class ValorActivity extends Activity {
 	EditText valor;
 	int index;
 	static int  REQUEST_CODE ;
-	private String listaValor2;
+	String listaValor;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +38,8 @@ public class ValorActivity extends Activity {
 		listaDeQuantidades = mainAux.getLongExtra("listaDeQuantidades2",0);
 		listaDeUnidadesDeMedidas = mainAux.getStringExtra("listaDeUnidadesDeMedidas2");
 		posicao =  mainAux.getIntExtra("posicao",0);
-	    listaValor2 =  mainAux.getStringExtra("listaValor");
+	    listaValor =  mainAux.getStringExtra("listaValor");
+	    
 		index = mainAux.getIntExtra("index",0);
 	
 		
@@ -47,28 +50,36 @@ public class ValorActivity extends Activity {
 				@Override
 				public void onClick(View v) {
 			
-				    
+					String valor2 = valor.getText().toString();     
+					String posicao2 = String.valueOf(posicao);  
 		     	REQUEST_CODE =	posicao;			
 	
-				 
-						
-					 Intent main_valor = new Intent(v.getContext(),MainActivity.class);
+		    	
+	             Intent i = new Intent(v.getContext(), ListaFeitaActivity.class);
+	                Bundle params = new Bundle();
+	         
+	                params.putString("valor2", valor2);
+	                params.putString("posicao2", posicao2);
+	                i.putExtras(params);
+	               startActivity(i); 
+	              //  setResult(1,i);
+	              //  finish();
+		     	
+				/*	 Intent main_valor = new Intent(v.getContext(),ListaFeitaActivity.class);
 
 						String valor2 = valor.getText().toString(); 
 							
-						main_valor.putExtra("listaDeProdutos2",listaDeProdutos);
-						main_valor.putExtra("listaDeQuantidades2",listaDeQuantidades);
-						main_valor.putExtra("listaDeUnidadesDeMedidas2",listaDeUnidadesDeMedidas);
+					
 						main_valor.putExtra("posicao",posicao);
 						main_valor.putExtra("valor2",valor.getText().toString()); 			
 						main_valor.putExtra("index", Integer.toString(index));
 					
-						Toast.makeText(getApplicationContext(),"Lista feita cade"+ posicao, Toast.LENGTH_SHORT).show();
+					
 						Toast.makeText(getApplicationContext(),"cade posição 2!"+ posicao, Toast.LENGTH_SHORT).show();
-            			 Toast.makeText(getApplicationContext(),"cade o valor 3!"+listaValor2+"/"+ valor2, Toast.LENGTH_SHORT).show();
+            			 Toast.makeText(getApplicationContext(),"cade o valor 3!"+listaValor+"/"+ valor2, Toast.LENGTH_SHORT).show();
 							setResult(1,main_valor);
-							// startActivity(main_valor);
-							finish();
+							//startActivity(main_valor);
+							finish();*/
 
 					
 					

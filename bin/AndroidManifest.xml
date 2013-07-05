@@ -40,10 +40,7 @@
             android:label="@string/title_activity_valor"
             android:theme="@android:style/Theme.Dialog" >
         </activity>
-        <activity
-            android:name="br.com.especializacao.sevira.ListaFeitaValorActivity"
-            android:label="@string/title_activity_lista_feita_valor" >
-        </activity>
+   
     </application>
 
 </manifest>
