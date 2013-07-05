@@ -22,10 +22,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name="br.com.especializacao.sevira.ComprasActivity"
-            android:label="@string/app_name" >
-        </activity>
+
         <activity
             android:name="br.com.especializacao.sevira.ListaActivity"
             android:label="@string/app_name" >
