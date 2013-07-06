@@ -33,9 +33,13 @@ public class ListaFeitaActivity extends Activity implements OnItemClickListener 
     private String[] listaFinal; 
     private int j;
     private int posicao;
-    long auxValor;
+    private long auxValor;
     private boolean status2[];
-    ListView lViewChekBox;
+    private ListView lViewChekBox;
+    private long[] listaDeQuantidades;
+    private String[] listaDeProdutos;
+    private String[] listaDeUnidadesDeMedidas;
+    
 
    
 	@Override
@@ -50,9 +54,9 @@ public class ListaFeitaActivity extends Activity implements OnItemClickListener 
 		
 		Intent mainAux = getIntent();
 		
-		String[] listaDeProdutos = mainAux.getStringArrayExtra("listaDeProdutos");
-		long[] listaDeQuantidades = mainAux.getLongArrayExtra("listaDeQuantidades");
-		String[] listaDeUnidadesDeMedidas = mainAux.getStringArrayExtra("listaDeUnidadesDeMedidas");
+		listaDeProdutos = mainAux.getStringArrayExtra("listaDeProdutos");
+		listaDeQuantidades = mainAux.getLongArrayExtra("listaDeQuantidades");
+		listaDeUnidadesDeMedidas = mainAux.getStringArrayExtra("listaDeUnidadesDeMedidas");
 		
 		
 		j = 0;
@@ -138,7 +142,10 @@ public class ListaFeitaActivity extends Activity implements OnItemClickListener 
 			valor = valor - listaDeValor2[position];
 			listaDeValor2[position] = 0;
 			status[position] = false; 
-			totalValor.setText("Valor Total: R$" + String.valueOf(valor+",00"));
+			status2[position] = true;
+			posicao = position;
+			totalValor.setText("Valor Total: R$" + String.valueOf(valor+",00"));				    
+   			
 		}
    
    }
@@ -156,7 +163,8 @@ public class ListaFeitaActivity extends Activity implements OnItemClickListener 
 		       			//int index = Integer.parseInt(intent.getExtras().getString("index"));
 		       			listaDeValor2[posicao] = auxValor;
 		       			valor = valor + auxValor;
-		       			status[posicao] = true;		        			
+		       			status[posicao] = true;		    
+		       			status2[posicao] = true;	
 		       			totalValor.setText("Valor Total: R$" + String.valueOf(valor+",00"));
 		       			//Toast.makeText(getApplicationContext(),String.valueOf(auxValor), Toast.LENGTH_LONG).show();
 		        		//totalPeso.setText("Total Itens: " + String.valueOf(total));
@@ -173,35 +181,28 @@ public class ListaFeitaActivity extends Activity implements OnItemClickListener 
 		
 		Toast.makeText(getApplicationContext(),String.valueOf(posicao), Toast.LENGTH_LONG).show();
 	
-		for(int i = 0;i < listaDeProdutos.length;i++)
-		{
-			if(listaDeQuantidades[i] != 0)
-			{
-				
-				listaDeProdutos2[j] = listaDeProdutos[i];
- 				listaDeQuantidades2[j] = listaDeQuantidades[i];
-				listaDeUnidadesDeMedidas2[j] = listaDeUnidadesDeMedidas[i];
-			 	listaFinal[j] = listaDeProdutos2[j] +" "+listaDeQuantidades2[j] +" "+ listaDeUnidadesDeMedidas2[j]+"s R$ " + String.valueOf(listaDeValor2[j]) + ",00" ;
-				listaDeValor2[j] = 0;
-				status[j] = false;
-				j++;
-				
+		if(status2[posicao] = true){
 
-			}
-			
-		}	;
-		//listaFinal[posicao] = listaDeProdutos2[posicao] +" "+listaDeQuantidades2[posicao] +" "+ listaDeUnidadesDeMedidas2[posicao]+"s R$ " + String.valueOf(listaDeValor2[posicao]) + ",00" ;
-		
-	   // lViewChekBox.setAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_list_item_multiple_choice,  listaFinal) );   
-		//lViewChekBox.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
-		//lViewChekBox.setOnItemClickListener(this);
+
+			listaFinal[posicao] = listaDeProdutos2[posicao] +" "+listaDeQuantidades2[posicao] +" "+ listaDeUnidadesDeMedidas2[posicao]+"s R$ " + String.valueOf(listaDeValor2[posicao]) + ",00" ;
+			status2[posicao] = true;
+		}
+		else
+		{
+
+			listaDeValor2[posicao] = 0;
+			listaFinal[posicao] = listaDeProdutos2[posicao] +" "+listaDeQuantidades2[posicao] +" "+ listaDeUnidadesDeMedidas2[posicao]+"s R$ " + String.valueOf(listaDeValor2[posicao]) + ",00" ;
+
+			status2[posicao] = false;
+		}
+
 	}
 	
-	
-	 public void onBackPressed() {  
-		   // Não funcionar o botão back;
-		      return;
-		}
+//	
+//	 public void onBackPressed() {  
+//		   // Não funcionar o botão back;
+//		      return;
+//		}
 	
 	
 }

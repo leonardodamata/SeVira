@@ -254,8 +254,8 @@ public class ListaActivity extends Activity implements OnItemClickListener
 		 listaDeQuantidades[index] = quantidade;
 	 }
 	 
-	 public void onBackPressed() {  
-		   // Não funcionar o botão back;
-		      return;
-		}
+//	 public void onBackPressed() {  
+//		   // Não funcionar o botão back;
+//		      return;
+//		}
 }

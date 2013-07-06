@@ -73,8 +73,8 @@ public class AlarmeActivity extends Activity {
 	    finish();
 	}
 	
-	 public void onBackPressed() {  
-		   // Não funcionar o botão back;
-		      return;
-		}
+//	 public void onBackPressed() {  
+//		   // Não funcionar o botão back;
+//		      return;
+//		}
 }

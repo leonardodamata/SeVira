@@ -45,9 +45,9 @@ public class MainActivity extends Activity {
 		return true;
 	}
 	
-	 public void onBackPressed() {  
-		   // Não funcionar o botão back;
-		      return;
-		}
+//	 public void onBackPressed() {  
+//		   // Não funcionar o botão back;
+//		      return;
+//		}
 
 }
