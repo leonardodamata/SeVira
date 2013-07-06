@@ -3,45 +3,40 @@ package br.com.especializacao.sevira;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.content.pm.ActivityInfo;
 import android.os.Bundle;
-import android.os.CountDownTimer;
 import android.view.Menu;
-import android.view.WindowManager;
+import android.view.View;
+import android.widget.Button;
 
 
 public class MainActivity extends Activity {
 
 
-	final int tempoEspera = 3000; // em milisegundos
-	public Object mCountDownTimer;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		
-		// Aguardar 3 segundos
-	
+		Button confirmar = (Button) findViewById(R.id.buttonCompras);
+
 		
-		 mCountDownTimer = new CountDownTimer(tempoEspera, 1000) {
+		confirmar.setOnClickListener(new View.OnClickListener() {
+		
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Intent i = new Intent(MainActivity.this, ListaActivity.class);
+			    startActivity(i);	
+			
+			
+		}
+    });
+		
+		
+ }
 
-		     public void onTick(long millisUntilFinished) {		    		
-		     }
-
-		     public void onFinish() {
-		    	
-		     // Chamar a tela de compras
-		    	 
-		    //	Intent i = new Intent(MainActivity.this, ComprasActivity.class);
-		    // passando direto para lista
-		   	Intent i = new Intent(MainActivity.this, ListaActivity.class);	 
-		 	    startActivityForResult(i, 1);	
-		 	  
-		     }
-		  }	.start();
-	}
-
+	
 	
 	
 	@Override
