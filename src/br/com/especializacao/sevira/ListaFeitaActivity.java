@@ -4,6 +4,7 @@ package br.com.especializacao.sevira;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
@@ -99,7 +100,10 @@ public class ListaFeitaActivity extends Activity implements OnItemClickListener 
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				finish();
+				Intent i = new Intent(ListaFeitaActivity.this, MainActivity.class);	 
+		 	    startActivityForResult(i, 1);	
+		 	  
+		    
 			}
 		});
 	}
@@ -131,46 +135,37 @@ public class ListaFeitaActivity extends Activity implements OnItemClickListener 
 			status[position] = true;
 			
 
-				 startActivityForResult(produtosValor,REQUEST_CODE);
+		    startActivityForResult(produtosValor,REQUEST_CODE);
 
 		}
 		else
 		{
-			 Toast.makeText(getApplicationContext(),"Desmarcando o produto!", Toast.LENGTH_LONG).show();
-			// valor = valor - Long.parseLong(valor3);
-			valor = 1;
-			 total = total - listaDeQuantidades2[position];
-			totalPeso.setText("Total Itens: " + String.valueOf(total));
-        /////	totalValor.setText("Valor Total: " + String.valueOf(valor));
-				status[position] = false;
-			//	refreshListaList( String.valueOf(valor));
-				refreshListaList( );
+			
+			Toast.makeText(getApplicationContext(),"Desmarcando o produto! "+ position, Toast.LENGTH_LONG).show();
+					
+			SharedPreferences sharedPreferences = getPreferences(MODE_PRIVATE);
+			String strPosicaoMem1 = sharedPreferences.getString("posicao","");
+			String strValorMem2 = sharedPreferences.getString("valor","");
+			
+			Toast.makeText(getApplicationContext(),"Valor! "+ strValorMem2, Toast.LENGTH_LONG).show();
+			total = total - listaDeQuantidades2[position];
+       		valor= valor - Long.parseLong(strValorMem2) ;
+        			
+            Toast.makeText(getApplicationContext(),total *  valor+",00", Toast.LENGTH_LONG).show();
+        	totalPeso.setText("Total Itens: " + String.valueOf(total));
+        	totalValor.setText("Valor Total: R$" + String.valueOf(listaDeQuantidades2[position] *  valor+",00"));
+        		
+        	listaFinal[position] = listaDeProdutos2[position] +" "+listaDeQuantidades2[position] +" "+ listaDeUnidadesDeMedidas2[position]+"s x R$: 0,00"+" = R$ 0,00" ;
+        	status[position] = false; // por  strPosicaoMem1
+		
+			//	refreshListaList( );
 		}
  		
 		
-/*
-		if(status[position] == false)
-		{
-			total = total + listaDeQuantidades2[position];
-			//valor =valor+ Long.parseLong(valorT) ;
-			valor +=3 ;
-			status[position] = true;
-			
-		}
-		else
-		{
-			total = total - listaDeQuantidades2[position];
-			//valor =valor - Long.parseLong(valorT);
-			valor -= 1;
-			status[position] = false;
-		}
-		totalPeso.setText("Total: " + String.valueOf(total));
-		totalValor.setText("Valor Total: " + String.valueOf(valor));
-		
-		*/
+   
    }
 	
-	/////@Override
+/*	/////@Override
 	protected void OnResume(){
 		super.onResume();
 	refreshListaList();
@@ -179,37 +174,40 @@ public class ListaFeitaActivity extends Activity implements OnItemClickListener 
 	private void refreshListaList(){
 	
 		 Toast.makeText(getApplicationContext(),"refreshListaList", Toast.LENGTH_SHORT).show();
-		listaFinal[j] = listaDeProdutos2[j] +" "+listaDeQuantidades2[j] +" "+ listaDeUnidadesDeMedidas2[j]+"s x R$: 0,00"+" = R$ 0,00" ;
-		valor =valor -1;/// Long.parseLong(valor2);
-		totalValor.setText("Valor Total: " + String.valueOf(valor));
-	}
 	
+		valor =valor -1;/// Long.parseLong(valor2);
+	
+		totalValor.setText("Valor Total: " + String.valueOf(valor));
+		
+		listaFinal[j] = listaDeProdutos2[j] +" "+listaDeQuantidades2[j] +" "+ listaDeUnidadesDeMedidas2[j]+"s x R$: 0,00"+" = R$ 0,00" ;
+		
+		
+	}
+	/*/
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
 	    // Check which request we're responding to
 	
-	
-		 Toast.makeText(getApplicationContext(),"3/onActivityResult", Toast.LENGTH_SHORT).show();
-	 
 			   if (resultCode == Activity.RESULT_OK) 
 			      { 
 			           
-			            String	posicao = intent.getStringExtra ("posicao"); 
+			          //  String	posicao = intent.getStringExtra ("posicao"); 
 						String valor3 =  intent.getStringExtra("valor2");  
-						
-						Toast.makeText(getApplicationContext()," posicao 4/"+posicao, Toast.LENGTH_LONG).show();
-						Toast.makeText(getApplicationContext()," Valor 5/"+valor3, Toast.LENGTH_LONG).show();
-						
-					
+
 		       			total = total + listaDeQuantidades2[requestCode];
 		       			valor +=Long.parseLong(valor3) ;
 		        			
 		        	
-		        		
+		       			Toast.makeText(getApplicationContext(),String.valueOf(listaDeQuantidades2[requestCode] *  valor+",00"), Toast.LENGTH_LONG).show();
 		        		totalPeso.setText("Total Itens: " + String.valueOf(total));
-		        		totalValor.setText("Valor Total: " + String.valueOf(valor));
-		        		listaFinal[requestCode] = listaDeProdutos2[requestCode] +" "+listaDeQuantidades2[requestCode] +" "+ listaDeUnidadesDeMedidas2[requestCode]+"s x R$: "+valor3+" = R$ "+ (listaDeQuantidades2[requestCode] *  Long.parseLong(valor3));
+		        		totalValor.setText("Valor Total: R$" + String.valueOf(listaDeQuantidades2[requestCode] *  valor+",00"));
+		        		listaFinal[requestCode] = listaDeProdutos2[requestCode] +" "+listaDeQuantidades2[requestCode] +" "+ listaDeUnidadesDeMedidas2[requestCode]+"s x R$: "+valor3+",00 = R$ "+ (listaDeQuantidades2[requestCode] *  Long.parseLong(valor3)+",00");
 		        	
+		        		SharedPreferences sharedPreferences = getPreferences(MODE_PRIVATE);
+						SharedPreferences.Editor editor = sharedPreferences.edit();
+						editor.putString("posicao",String.valueOf(requestCode));
+						editor.putString("valor",valor3);
+						editor.commit();
 		        		
 			      }		
 	
