@@ -12,5 +12,6 @@
     <string name="title_activity_lista_feita">ListaFeitaActivity</string>
     <string name="title_activity_valor">ValorActivity</string>
     <string name="title_activity_lista_feita_valor">ListaFeitaValorActivity</string>
+    <string name="title_activity_alarme">Alarme</string>
 
 </resources>

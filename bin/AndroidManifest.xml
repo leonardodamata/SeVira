@@ -40,7 +40,14 @@
             android:label="@string/title_activity_valor"
             android:theme="@android:style/Theme.Dialog" >
         </activity>
-   
+        <activity
+            android:name="br.com.especializacao.sevira.Alarme"
+            android:label="@string/title_activity_alarme" >
+        </activity>
+        <activity
+            android:name="br.com.especializacao.sevira.AlarmeActivity"
+            android:label="@string/title_activity_alarme" >
+        </activity>
     </application>
 
 </manifest>

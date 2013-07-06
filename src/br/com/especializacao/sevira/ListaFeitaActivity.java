@@ -19,7 +19,7 @@ import android.widget.Toast;
 public class ListaFeitaActivity extends Activity implements OnItemClickListener {
 	private String[] listaDeProdutos2;
 	private long[] listaDeQuantidades2;
-	long[] listaDeValor2;
+	private long[] listaDeValor2;
 	private String[] listaDeUnidadesDeMedidas2;
 	double[] listaDeValorIndividual2;
 	private long total = 0;
@@ -33,6 +33,10 @@ public class ListaFeitaActivity extends Activity implements OnItemClickListener 
     private int tamanho;
     private String[] listaFinal; 
     private int j;
+    private int posicao;
+    long auxValor;
+    private boolean status2[];
+    ListView lViewChekBox;
 
    
 	@Override
@@ -63,7 +67,9 @@ public class ListaFeitaActivity extends Activity implements OnItemClickListener 
 		listaDeProdutos2 = new String[j];
 		listaDeQuantidades2 = new long[j];
 		listaDeUnidadesDeMedidas2 = new String[j];
+		listaDeValor2 = new long[j];
 		status = new boolean[j];
+		status2 = new boolean[j];
 		j = 0;
 	    listaFinal = new String[listaDeQuantidades2.length];
 	    
@@ -76,10 +82,9 @@ public class ListaFeitaActivity extends Activity implements OnItemClickListener 
 				listaDeProdutos2[j] = listaDeProdutos[i];
  				listaDeQuantidades2[j] = listaDeQuantidades[i];
 				listaDeUnidadesDeMedidas2[j] = listaDeUnidadesDeMedidas[i];
-			 	listaFinal[j] = listaDeProdutos2[j] +" "+listaDeQuantidades2[j] +" "+ listaDeUnidadesDeMedidas2[j]+"s x R$: 0,00"+" = R$ 0,00" ;
+			 	listaFinal[j] = listaDeProdutos2[j] +" "+listaDeQuantidades2[j] +" "+ listaDeUnidadesDeMedidas2[j]+"s R$ " + String.valueOf(listaDeValor2[j]) + ",00" ;
+				listaDeValor2[j] = 0;
 				status[j] = false;
-			 
-			
 				j++;
 				
 
@@ -88,12 +93,12 @@ public class ListaFeitaActivity extends Activity implements OnItemClickListener 
 		}	;
  
 		    
-	    ListView lViewChekBox = (ListView) findViewById(R.id.listItem);
+	    lViewChekBox = (ListView) findViewById(R.id.listItem);
 	    lViewChekBox.setAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_list_item_multiple_choice,  listaFinal) );   
 		lViewChekBox.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
 		lViewChekBox.setOnItemClickListener(this);
 
-		valor =0 ;
+//		valor =0 ;
 		
 		finalizar.setOnClickListener(new View.OnClickListener() {
 			
@@ -119,49 +124,23 @@ public class ListaFeitaActivity extends Activity implements OnItemClickListener 
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 	
 		//// Chamar a activity tela de compras
-	
-	if(status[position] == false)
+		if(status[position] == false)
 		{
-	      REQUEST_CODE = position;
-				Intent produtosValor = new Intent(ListaFeitaActivity.this,ValorActivity.class);
-				produtosValor.putExtra("listaDeProdutos2",listaDeProdutos2);
-				produtosValor.putExtra("listaDeQuantidades2",listaDeQuantidades2);
-				produtosValor.putExtra("listaDeUnidadesDeMedidas2",listaDeUnidadesDeMedidas2);
-				produtosValor.putExtra("tamanho", tamanho);
-				produtosValor.putExtra("posicao",position);
-           
-			//valor =valor+ Long.parseLong(valorT) ;
-			
-			status[position] = true;
-			
-
-		    startActivityForResult(produtosValor,REQUEST_CODE);
-
+			Intent produtosValor = new Intent(ListaFeitaActivity.this,ValorActivity.class);
+			produtosValor.putExtra("listaDeProdutos2",listaDeProdutos2);
+			produtosValor.putExtra("listaDeQuantidades2",listaDeQuantidades2);
+			produtosValor.putExtra("listaDeUnidadesDeMedidas2",listaDeUnidadesDeMedidas2);
+			produtosValor.putExtra("tamanho", tamanho);
+			posicao = position;
+			startActivityForResult(produtosValor,1);
 		}
 		else
 		{
-			
-			Toast.makeText(getApplicationContext(),"Desmarcando o produto! "+ position, Toast.LENGTH_LONG).show();
-					
-			SharedPreferences sharedPreferences = getPreferences(MODE_PRIVATE);
-			String strPosicaoMem1 = sharedPreferences.getString("posicao","");
-			String strValorMem2 = sharedPreferences.getString("valor","");
-			
-			Toast.makeText(getApplicationContext(),"Valor! "+ strValorMem2, Toast.LENGTH_LONG).show();
-			total = total - listaDeQuantidades2[position];
-       		valor= valor - Long.parseLong(strValorMem2) ;
-        			
-            Toast.makeText(getApplicationContext(),total *  valor+",00", Toast.LENGTH_LONG).show();
-        	totalPeso.setText("Total Itens: " + String.valueOf(total));
-        	totalValor.setText("Valor Total: R$" + String.valueOf(listaDeQuantidades2[position] *  valor+",00"));
-        		
-        	listaFinal[position] = listaDeProdutos2[position] +" "+listaDeQuantidades2[position] +" "+ listaDeUnidadesDeMedidas2[position]+"s x R$: 0,00"+" = R$ 0,00" ;
-        	status[position] = false; // por  strPosicaoMem1
-		
-			//	refreshListaList( );
+			valor = valor - listaDeValor2[position];
+			listaDeValor2[position] = 0;
+			status[position] = false; // por  strPosicaoMem1
+			totalValor.setText("Valor Total: R$" + String.valueOf(valor+",00"));
 		}
- 		
-		
    
    }
 	
@@ -188,34 +167,36 @@ public class ListaFeitaActivity extends Activity implements OnItemClickListener 
 	protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
 	    // Check which request we're responding to
 	
-			   if (resultCode == Activity.RESULT_OK) 
-			      { 
-			           
-			          //  String	posicao = intent.getStringExtra ("posicao"); 
-						String valor3 =  intent.getStringExtra("valor2");  
+    
 
 		       			total = total + listaDeQuantidades2[requestCode];
-		       			valor +=Long.parseLong(valor3) ;
-		        			
+		       			//long quantidade = Long.parseLong(data.getExtras().getString("quantidade"));
+		       			auxValor = Long.parseLong(intent.getExtras().getString("valor2"));
+		       			//int index = Integer.parseInt(intent.getExtras().getString("index"));
+		       			listaDeValor2[posicao] = auxValor;
+		       			valor = valor + auxValor;
+		       			status[posicao] = true;		        			
+		       			totalValor.setText("Valor Total: R$" + String.valueOf(valor+",00"));
+		       			//Toast.makeText(getApplicationContext(),String.valueOf(auxValor), Toast.LENGTH_LONG).show();
+		        		//totalPeso.setText("Total Itens: " + String.valueOf(total));
+		        		//listaFinal[requestCode] = listaDeProdutos2[requestCode] +" "+listaDeQuantidades2[requestCode] +" "+ listaDeUnidadesDeMedidas2[requestCode]+"s";
 		        	
-		       			Toast.makeText(getApplicationContext(),String.valueOf(listaDeQuantidades2[requestCode] *  valor+",00"), Toast.LENGTH_LONG).show();
-		        		totalPeso.setText("Total Itens: " + String.valueOf(total));
-		        		totalValor.setText("Valor Total: R$" + String.valueOf(listaDeQuantidades2[requestCode] *  valor+",00"));
-		        		listaFinal[requestCode] = listaDeProdutos2[requestCode] +" "+listaDeQuantidades2[requestCode] +" "+ listaDeUnidadesDeMedidas2[requestCode]+"s x R$: "+valor3+",00 = R$ "+ (listaDeQuantidades2[requestCode] *  Long.parseLong(valor3)+",00");
-		        	
-		        		SharedPreferences sharedPreferences = getPreferences(MODE_PRIVATE);
-						SharedPreferences.Editor editor = sharedPreferences.edit();
-						editor.putString("posicao",String.valueOf(requestCode));
-						editor.putString("valor",valor3);
-						editor.commit();
-		        		
-			      }		
-	
-	
-	             if (resultCode == RESULT_CANCELED) {      
-	                 Toast.makeText(getApplicationContext(),"Your sim type iss PREEEEE paidddddddddd", Toast.LENGTH_LONG).show();  
-	             }   
-
+//		        		SharedPreferences sharedPreferences = getPreferences(MODE_PRIVATE);
+//						SharedPreferences.Editor editor = sharedPreferences.edit();
+//						editor.putString("posicao",String.valueOf(requestCode));
+//						editor.putString("valor",valor3);
+//						editor.commit();
+		 
 	}
-	
+
+	@Override
+	protected void onResume() {
+		// TODO Auto-generated method stub
+		super.onResume();
+		//listaFinal[posicao] = listaDeProdutos2[posicao] +" "+listaDeQuantidades2[posicao] +" "+ listaDeUnidadesDeMedidas2[posicao]+"s R$ " + String.valueOf(listaDeValor2[posicao]) + ",00" ;
+		
+	   // lViewChekBox.setAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_list_item_multiple_choice,  listaFinal) );   
+		//lViewChekBox.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
+		//lViewChekBox.setOnItemClickListener(this);
+	}
 }

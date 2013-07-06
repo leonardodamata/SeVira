@@ -59,11 +59,12 @@ public class ListaActivity extends Activity implements OnItemClickListener
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-		    	Intent produtos = new Intent(ListaActivity.this,ListaFeitaActivity.class);
+		    	Intent produtos = new Intent(ListaActivity.this,AlarmeActivity.class);
 				produtos.putExtra("listaDeProdutos",listaDeProdutos);
 				produtos.putExtra("listaDeQuantidades",listaDeQuantidades);
 				produtos.putExtra("listaDeUnidadesDeMedidas",listaDeUnidadesDeMedidas);
 		    	startActivity(produtos);
+		    	finish();
 			}
 		});
 		 
@@ -134,13 +135,10 @@ public class ListaActivity extends Activity implements OnItemClickListener
 	
 		 quantia.putExtra("index",arg2);
 		 
-		 startActivityForResult(quantia,1);		
+		 startActivityForResult(quantia,1);
       
         
     }
-    
-      
-    
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -255,5 +253,4 @@ public class ListaActivity extends Activity implements OnItemClickListener
 		 long quantidade = Long.parseLong(data.getExtras().getString("quantidade"));
 		 listaDeQuantidades[index] = quantidade;
 	 }
-
 }
