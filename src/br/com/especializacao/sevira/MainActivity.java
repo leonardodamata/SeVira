@@ -3,9 +3,11 @@ package br.com.especializacao.sevira;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.Menu;
+import android.view.WindowManager;
 
 
 public class MainActivity extends Activity {
@@ -18,6 +20,13 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		
+		try {
+			setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+			getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+			} catch (Exception e) {
+			e.printStackTrace();
+			}
 		
 		// Aguardar 3 segundos
 	
@@ -40,6 +49,7 @@ public class MainActivity extends Activity {
 		  }	.start();
 	}
 
+	
 	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
