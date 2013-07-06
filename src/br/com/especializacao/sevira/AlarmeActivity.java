@@ -15,13 +15,13 @@ import android.widget.TimePicker;
 
 public class AlarmeActivity extends Activity {
 
-	DatePicker dp;
-	TimePicker tp;
-	int dia;
-	int mes;
-	int ano;
-	int hora;
-	int minuto;
+	private DatePicker dp;
+	private TimePicker tp;
+	private int dia;
+	private int mes;
+	private int ano;
+	private int hora;
+	private int minuto;
 	
 	PendingIntent pendingIntent1;
 	
@@ -31,6 +31,8 @@ public class AlarmeActivity extends Activity {
 		setContentView(R.layout.activity_alarme);
 				
 		Button lembrete = (Button) findViewById(R.id.button1);
+		
+		
 		
 		lembrete.setOnClickListener(new View.OnClickListener() {
 			
@@ -70,4 +72,9 @@ public class AlarmeActivity extends Activity {
 	    alarmManager1.set(AlarmManager.RTC, calendar1.getTimeInMillis(), pendingIntent1);
 	    finish();
 	}
+	
+	 public void onBackPressed() {  
+		   // Não funcionar o botão back;
+		      return;
+		}
 }

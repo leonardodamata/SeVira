@@ -4,7 +4,6 @@ package br.com.especializacao.sevira;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
@@ -138,31 +137,13 @@ public class ListaFeitaActivity extends Activity implements OnItemClickListener 
 		{
 			valor = valor - listaDeValor2[position];
 			listaDeValor2[position] = 0;
-			status[position] = false; // por  strPosicaoMem1
+			status[position] = false; 
 			totalValor.setText("Valor Total: R$" + String.valueOf(valor+",00"));
 		}
    
    }
 	
-/*	/////@Override
-	protected void OnResume(){
-		super.onResume();
-	refreshListaList();
-	}
-	
-	private void refreshListaList(){
-	
-		 Toast.makeText(getApplicationContext(),"refreshListaList", Toast.LENGTH_SHORT).show();
-	
-		valor =valor -1;/// Long.parseLong(valor2);
-	
-		totalValor.setText("Valor Total: " + String.valueOf(valor));
-		
-		listaFinal[j] = listaDeProdutos2[j] +" "+listaDeQuantidades2[j] +" "+ listaDeUnidadesDeMedidas2[j]+"s x R$: 0,00"+" = R$ 0,00" ;
-		
-		
-	}
-	/*/
+
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
 	    // Check which request we're responding to
@@ -181,11 +162,7 @@ public class ListaFeitaActivity extends Activity implements OnItemClickListener 
 		        		//totalPeso.setText("Total Itens: " + String.valueOf(total));
 		        		//listaFinal[requestCode] = listaDeProdutos2[requestCode] +" "+listaDeQuantidades2[requestCode] +" "+ listaDeUnidadesDeMedidas2[requestCode]+"s";
 		        	
-//		        		SharedPreferences sharedPreferences = getPreferences(MODE_PRIVATE);
-//						SharedPreferences.Editor editor = sharedPreferences.edit();
-//						editor.putString("posicao",String.valueOf(requestCode));
-//						editor.putString("valor",valor3);
-//						editor.commit();
+
 		 
 	}
 
@@ -193,10 +170,38 @@ public class ListaFeitaActivity extends Activity implements OnItemClickListener 
 	protected void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
+		
+		Toast.makeText(getApplicationContext(),String.valueOf(posicao), Toast.LENGTH_LONG).show();
+	
+		for(int i = 0;i < listaDeProdutos.length;i++)
+		{
+			if(listaDeQuantidades[i] != 0)
+			{
+				
+				listaDeProdutos2[j] = listaDeProdutos[i];
+ 				listaDeQuantidades2[j] = listaDeQuantidades[i];
+				listaDeUnidadesDeMedidas2[j] = listaDeUnidadesDeMedidas[i];
+			 	listaFinal[j] = listaDeProdutos2[j] +" "+listaDeQuantidades2[j] +" "+ listaDeUnidadesDeMedidas2[j]+"s R$ " + String.valueOf(listaDeValor2[j]) + ",00" ;
+				listaDeValor2[j] = 0;
+				status[j] = false;
+				j++;
+				
+
+			}
+			
+		}	;
 		//listaFinal[posicao] = listaDeProdutos2[posicao] +" "+listaDeQuantidades2[posicao] +" "+ listaDeUnidadesDeMedidas2[posicao]+"s R$ " + String.valueOf(listaDeValor2[posicao]) + ",00" ;
 		
 	   // lViewChekBox.setAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_list_item_multiple_choice,  listaFinal) );   
 		//lViewChekBox.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
 		//lViewChekBox.setOnItemClickListener(this);
 	}
+	
+	
+	 public void onBackPressed() {  
+		   // Não funcionar o botão back;
+		      return;
+		}
+	
+	
 }

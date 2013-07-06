@@ -80,5 +80,10 @@ public class ValorActivity extends Activity {
 		getMenuInflater().inflate(R.menu.valor, menu);
 		return true;
 	}
+	
+	 public void onBackPressed() {  
+		   // Não funcionar o botão back;
+		      return;
+		}
 
 }

@@ -253,4 +253,9 @@ public class ListaActivity extends Activity implements OnItemClickListener
 		 long quantidade = Long.parseLong(data.getExtras().getString("quantidade"));
 		 listaDeQuantidades[index] = quantidade;
 	 }
+	 
+	 public void onBackPressed() {  
+		   // Não funcionar o botão back;
+		      return;
+		}
 }

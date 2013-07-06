@@ -61,4 +61,9 @@ public class QuantidadeActivity extends Activity {
 		getMenuInflater().inflate(R.menu.quantidade, menu);
 		return true;
 	}
+	
+	 public void onBackPressed() {  
+		   // Não funcionar o botão back;
+		      return;
+		}
 }

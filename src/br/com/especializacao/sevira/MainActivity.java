@@ -21,14 +21,14 @@ public class MainActivity extends Activity {
 		Button confirmar = (Button) findViewById(R.id.buttonCompras);
 
 		
-		confirmar.setOnClickListener(new View.OnClickListener() {
-		
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
+
+	confirmar.setOnClickListener(new View.OnClickListener() {
+	
+ @Override
+		public void onClick(View v) {
+			// TODO Auto-generated method stub
 				Intent i = new Intent(MainActivity.this, ListaActivity.class);
-			    startActivity(i);	
-			
+			   startActivity(i);	
 			
 		}
     });
@@ -37,14 +37,17 @@ public class MainActivity extends Activity {
  }
 
 	
-	
-	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.main, menu);
-		finish();
+	
 		return true;
 	}
+	
+	 public void onBackPressed() {  
+		   // Não funcionar o botão back;
+		      return;
+		}
 
 }
