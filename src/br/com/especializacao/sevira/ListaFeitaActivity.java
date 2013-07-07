@@ -12,7 +12,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
 public class ListaFeitaActivity extends Activity implements OnItemClickListener {
@@ -75,8 +74,7 @@ public class ListaFeitaActivity extends Activity implements OnItemClickListener 
 		status2 = new boolean[j];
 		j = 0;
 	    listaFinal = new String[listaDeQuantidades2.length];
-	    
-	  //  tamanho =  listaDeQuantidades2.length;
+
 		for(int i = 0;i < listaDeProdutos.length;i++)
 		{
 			if(listaDeQuantidades[i] != 0)
@@ -139,11 +137,13 @@ public class ListaFeitaActivity extends Activity implements OnItemClickListener 
 		else
 		{
 			valor = valor - listaDeValor2[position];
+			total = total - listaDeQuantidades2[position];	
 			listaDeValor2[position] = 0;
 			status[position] = false; 
 			status2[position] = true;
 			posicao = position;
-			totalValor.setText("Valor Total: R$" + String.valueOf(valor+",00"));				    
+			totalValor.setText("Valor Total: R$" + String.valueOf(valor+",00"));
+			totalPeso.setText("Total Itens: " + String.valueOf(total));
    			
 		}
    
@@ -156,31 +156,21 @@ public class ListaFeitaActivity extends Activity implements OnItemClickListener 
 	
     
 
-		       			total = total + listaDeQuantidades2[posicao];
-		       			//long quantidade = Long.parseLong(data.getExtras().getString("quantidade"));
+		       			total = total + listaDeQuantidades2[posicao];		       		
 		       			auxValor = Long.parseLong(intent.getExtras().getString("valor2"));
-		       			//int index = Integer.parseInt(intent.getExtras().getString("index"));
 		       			listaDeValor2[posicao] = auxValor;
 		       			valor = valor + auxValor;
 		       			status[posicao] = true;		    
 		       			status2[posicao] = true;	
 		       			totalValor.setText("Valor Total: R$" + String.valueOf(valor+",00"));
-		       			
-		       			//Toast.makeText(getApplicationContext(),String.valueOf(auxValor), Toast.LENGTH_LONG).show();
-		        		//totalPeso.setText("Total Itens: " + String.valueOf(total));
-		        		//listaFinal[requestCode] = listaDeProdutos2[requestCode] +" "+listaDeQuantidades2[requestCode] +" "+ listaDeUnidadesDeMedidas2[requestCode]+"s";
-		        	
-
-		 
+		        		totalPeso.setText("Total Itens: " + String.valueOf(total));
 	}
 
 	@Override
 	protected void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
-		
-		Toast.makeText(getApplicationContext(),String.valueOf(posicao), Toast.LENGTH_LONG).show();
-	
+
 		if(status2[posicao] = true){
 
 

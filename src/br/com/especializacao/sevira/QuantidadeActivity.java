@@ -14,6 +14,7 @@ public class QuantidadeActivity extends Activity {
 	String listaDeProdutos;
 	long listaDeQuantidades;
 	String listaDeUnidadesDeMedidas;
+ 
 
 	private EditText valor;
 	int index;
@@ -26,6 +27,8 @@ public class QuantidadeActivity extends Activity {
 		TextView medida = (TextView) findViewById(R.id.textMedida);
 		TextView produto = (TextView) findViewById(R.id.textItem);
 		valor = (EditText) findViewById(R.id.editQuantidade); 
+		if( valor.getText().toString().length() == 0 )
+			valor.setError( "A quantidade de itens é obrigatorio!" );
 		Button confirmar = (Button) findViewById(R.id.buttonConfirmar);
 		
 		Intent mainAux = getIntent();

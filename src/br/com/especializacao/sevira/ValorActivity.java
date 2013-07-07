@@ -25,6 +25,8 @@ public class ValorActivity extends Activity {
 
 		//pegar referencia do valor  preço do produto
 		valor = (EditText) findViewById(R.id.editValor); 
+		if( valor.getText().toString().length() == 0 )
+			valor.setError( "O valor dos itens é obrigatorio!" );
 		Button finalizar = (Button) findViewById(R.id.buttonFinalizar);
 	
 	
