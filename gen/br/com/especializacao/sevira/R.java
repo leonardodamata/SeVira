@@ -46,25 +46,26 @@ public final class R {
         public static final int tomate=0x7f020016;
     }
     public static final class id {
-        public static final int LinearLayout1=0x7f08000f;
+        public static final int LinearLayout1=0x7f080010;
         public static final int Lista=0x7f080003;
-        public static final int action_settings=0x7f080012;
+        public static final int action_settings=0x7f080013;
         public static final int button1=0x7f080002;
-        public static final int buttonConfirmar=0x7f08000d;
+        public static final int buttonCompras=0x7f080009;
+        public static final int buttonConfirmar=0x7f08000e;
         public static final int buttonFinalizar=0x7f080008;
         public static final int buttonOK=0x7f080004;
-        public static final int datePicker1=0x7f080001;
-        public static final int editQuantidade=0x7f08000c;
-        public static final int editValor=0x7f08000e;
-        public static final int imagemview=0x7f080010;
+        public static final int datePicker1=0x7f080000;
+        public static final int editQuantidade=0x7f08000d;
+        public static final int editValor=0x7f08000f;
+        public static final int imagemview=0x7f080011;
         public static final int listItem=0x7f080005;
-        public static final int text=0x7f080011;
-        public static final int textItem=0x7f08000a;
-        public static final int textMedida=0x7f08000b;
+        public static final int text=0x7f080012;
+        public static final int textItem=0x7f08000b;
+        public static final int textMedida=0x7f08000c;
         public static final int textPeso=0x7f080007;
-        public static final int textQuantidade=0x7f080009;
+        public static final int textQuantidade=0x7f08000a;
         public static final int textValor=0x7f080006;
-        public static final int timePicker1=0x7f080000;
+        public static final int timePicker1=0x7f080001;
     }
     public static final class layout {
         public static final int activity_alarme=0x7f030000;
@@ -126,5 +127,9 @@ public final class R {
  All customizations that are NOT specific to a particular API-level can go here. 
          */
         public static final int AppTheme=0x7f060001;
+        public static final int button=0x7f060002;
+        public static final int listview=0x7f060003;
+        public static final int textview=0x7f060004;
+        public static final int textview2=0x7f060005;
     }
 }

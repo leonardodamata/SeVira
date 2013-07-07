@@ -14,7 +14,8 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:calendarViewShown="false" 
-        android:layout_gravity="center"/>
+        android:layout_gravity="center"
+      />
 
      <TimePicker
         android:id="@+id/timePicker1"
@@ -22,13 +23,14 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/datePicker1"
         android:layout_centerHorizontal="true"
-        android:layout_gravity="center"/>
+        android:layout_gravity="center"
+     />
 
      <Button
          android:id="@+id/button1"
+         style="@style/button"
          android:layout_width="wrap_content"
          android:layout_height="wrap_content"
-         android:text="Criar Lembrete" 
-         android:layout_gravity="center"/>
+         android:text="Criar Lembrete" />
 
 </LinearLayout>

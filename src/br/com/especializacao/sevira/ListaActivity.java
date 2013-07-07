@@ -21,6 +21,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 //import android.widget.Toast;
+import android.widget.Toast;
 
 
 
@@ -54,6 +55,7 @@ public class ListaActivity extends Activity implements OnItemClickListener
  
         createListView();
         
+        Toast.makeText(getApplicationContext(), "Escolha os itens para montar a sua lista:", Toast.LENGTH_LONG).show();
         Button ok = (Button) findViewById(R.id.buttonOK);		 
 		 ok.setOnClickListener(new View.OnClickListener() {		
 			@Override

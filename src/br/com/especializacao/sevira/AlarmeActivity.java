@@ -1,7 +1,7 @@
 package br.com.especializacao.sevira;
 
-import java.util.Calendar;
 
+import java.util.Calendar;
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.TimePicker;
 
+
 public class AlarmeActivity extends Activity {
 
 	private DatePicker dp;
@@ -22,7 +23,7 @@ public class AlarmeActivity extends Activity {
 	private int ano;
 	private int hora;
 	private int minuto;
-	
+
 	PendingIntent pendingIntent1;
 	
 	@Override
@@ -35,6 +36,8 @@ public class AlarmeActivity extends Activity {
 		
 		
 		lembrete.setOnClickListener(new View.OnClickListener() {
+			
+		
 			
 			@Override
 			public void onClick(View arg0) {
@@ -72,6 +75,8 @@ public class AlarmeActivity extends Activity {
 	    alarmManager1.set(AlarmManager.RTC, calendar1.getTimeInMillis(), pendingIntent1);
 	    finish();
 	}
+	
+
 	
 //	 public void onBackPressed() {  
 //		   // Não funcionar o botão back;

@@ -25,24 +25,31 @@ public class ValorActivity extends Activity {
 
 		//pegar referencia do valor  preço do produto
 		valor = (EditText) findViewById(R.id.editValor); 
-		if( valor.getText().toString().length() == 0 )
-			valor.setError( "O valor dos itens é obrigatorio!" );
+	
 		Button finalizar = (Button) findViewById(R.id.buttonFinalizar);
 	
 	
-			
-	    finalizar.setOnClickListener(new View.OnClickListener() {	
 
-	     		Intent main_valor = new Intent(ValorActivity.this,ListaFeitaActivity.class);	        	
-				@Override
-				public void onClick(View v) {
-			
-				String valor2 = valor.getText().toString();    		
-				main_valor.putExtra("valor2", valor2); 					
-				setResult(1,main_valor);
-				finish();
+		finalizar.setOnClickListener(new View.OnClickListener() {	
+
+			Intent main_valor = new Intent(ValorActivity.this,ListaFeitaActivity.class);	        	
+			@Override
+			public void onClick(View v) {
+
+				if( valor.getText().toString().length() == 0 ){
+					valor.setError( "O valor dos itens é obrigatorio!" );
 				}
-			});
+				else
+				{
+					String valor2 = valor.getText().toString();    		
+					main_valor.putExtra("valor2", valor2); 	
+
+
+					setResult(1,main_valor);
+					finish();
+				}
+			}
+		});
 	
 		
 		

@@ -8,12 +8,11 @@
 
      <Button
          android:id="@+id/buttonCompras"
-         android:layout_width="126dp"
+         style="@style/button"
+         android:layout_width="wrap_content"
          android:layout_height="wrap_content"
-         android:layout_marginTop="24dp"
-         android:background="#000000"
-         android:text="Fazer Compras"
-         android:textColor="#FFFFFF"/>
+         android:layout_marginTop="350dp"
+         android:text=" Fazer Compras " />
 
 </LinearLayout>
      

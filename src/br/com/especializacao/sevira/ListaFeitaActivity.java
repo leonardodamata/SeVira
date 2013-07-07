@@ -12,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 public class ListaFeitaActivity extends Activity implements OnItemClickListener {
@@ -140,11 +141,18 @@ public class ListaFeitaActivity extends Activity implements OnItemClickListener 
 			total = total - listaDeQuantidades2[position];	
 			listaDeValor2[position] = 0;
 			status[position] = false; 
-			status2[position] = true;
+			
+			
 			posicao = position;
+			
+			status2[posicao] = false;
+
 			totalValor.setText("Valor Total: R$" + String.valueOf(valor+",00"));
 			totalPeso.setText("Total Itens: " + String.valueOf(total));
-   			
+			
+		
+			onResume();
+		
 		}
    
    }
@@ -164,6 +172,7 @@ public class ListaFeitaActivity extends Activity implements OnItemClickListener 
 		       			status2[posicao] = true;	
 		       			totalValor.setText("Valor Total: R$" + String.valueOf(valor+",00"));
 		        		totalPeso.setText("Total Itens: " + String.valueOf(total));
+		        
 	}
 
 	@Override
@@ -171,22 +180,32 @@ public class ListaFeitaActivity extends Activity implements OnItemClickListener 
 		// TODO Auto-generated method stub
 		super.onResume();
 
-		if(status2[posicao] = true){
+		
 
+		if(status2[posicao] == true){
+
+		
 
 			listaFinal[posicao] = listaDeProdutos2[posicao] +" "+listaDeQuantidades2[posicao] +" "+ listaDeUnidadesDeMedidas2[posicao]+"s R$ " + String.valueOf(listaDeValor2[posicao]) + ",00" ;
 			status2[posicao] = true;
 		}
-		else
-		{
+		else{
 
 			listaDeValor2[posicao] = 0;
-			listaFinal[posicao] = listaDeProdutos2[posicao] +" "+listaDeQuantidades2[posicao] +" "+ listaDeUnidadesDeMedidas2[posicao]+"s R$ " + String.valueOf(listaDeValor2[posicao]) + ",00" ;
+			
+			if(status2[posicao] == false){
 
+				
+			listaFinal[posicao] = listaDeProdutos2[posicao] +" "+listaDeQuantidades2[posicao] +" "+ listaDeUnidadesDeMedidas2[posicao]+"s R$ " + "0,00" ;
+
+		    lViewChekBox.setAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_list_item_multiple_choice,  listaFinal) );   
+		
+			}
 			status2[posicao] = false;
 		}
 
 	}
+}
 	
 //	
 //	 public void onBackPressed() {  
@@ -195,4 +214,4 @@ public class ListaFeitaActivity extends Activity implements OnItemClickListener 
 //		}
 	
 	
-}
+

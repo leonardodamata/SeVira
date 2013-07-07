@@ -27,8 +27,7 @@ public class QuantidadeActivity extends Activity {
 		TextView medida = (TextView) findViewById(R.id.textMedida);
 		TextView produto = (TextView) findViewById(R.id.textItem);
 		valor = (EditText) findViewById(R.id.editQuantidade); 
-		if( valor.getText().toString().length() == 0 )
-			valor.setError( "A quantidade de itens é obrigatorio!" );
+
 		Button confirmar = (Button) findViewById(R.id.buttonConfirmar);
 		
 		Intent mainAux = getIntent();
@@ -48,10 +47,17 @@ public class QuantidadeActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				main2.putExtra("quantidade", valor.getText().toString());
-				main2.putExtra("index", Integer.toString(index));
-				setResult(1,main2);
-				finish();
+
+				if( valor.getText().toString().length() == 0 ){
+					valor.setError( "A quantidade de itens é obrigatorio!" );
+				}
+				else
+				{
+					main2.putExtra("quantidade", valor.getText().toString());
+					main2.putExtra("index", Integer.toString(index));
+					setResult(1,main2);
+					finish();
+				}
 			}
 		});
 		
